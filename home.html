@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leon Motaung - Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f59e0b;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        .custom-cursor.hovered {
+            transform: scale(1.5);
+            background: #f59e0b;
+            opacity: 0.5;
+        }
+        body {
+            cursor: none;
+            background-color: #0F172A;
+            color: #CBD5E1;
+            font-family: 'Poppins', sans-serif;
+            padding-bottom: 100px;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: #f59e0b;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 35px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: #f59e0b;
+        }
+        .android-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1e293b;
+            padding: 1rem 0;
+            border-top: 2px solid #f59e0b;
+            z-index: 1000;
+        }
+        .nav-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            color: #f59e0b;
+            transform: translateY(-3px);
+        }
+        .nav-button i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .nav-button span {
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+
+    <!-- Android Navigation -->
+    <nav class="android-nav">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-around">
+                <a href="#home" class="nav-button">
+                    <i class="fas fa-house"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#about" class="nav-button">
+                    <i class="fas fa-envelope"></i>
+                    <span>About</span>
+                </a>
+                <a href="#contact" class="nav-button">
+                    <i class="fas fa-globe"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home" class="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-8">
+        <img src="./Pro.jpg" alt="Leon Motaung" class="w-64 h-64 rounded-full border-4 border-amber-500 object-cover">
+        <div class="flex-1">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Leon Motaung</h1>
+            <h2 class="text-2xl md:text-3xl text-amber-400 mb-6">Full Stack Developer (MERN) & Data Scientist</h2>
+            <p class="text-lg mb-8 max-w-2xl">
+                Owner of BYTEBURST Technologies Inc | AWS Certified Developer | 
+            </p>
+            
+            <div class="flex gap-6 mb-8">
+                <div class="bg-slate-800 p-4 rounded-lg text-center flex-1">
+                    <p class="text-2xl font-bold text-amber-400">7+</p>
+                    <p class="text-sm">Personal Projects</p>
+                </div>
+                <div class="bg-slate-800 p-4 rounded-lg text-center flex-1">
+                    <p class="text-2xl font-bold text-amber-400">15+</p>
+                    <p class="text-sm">Course Projects</p>
+                </div>
+                <div class="bg-slate-800 p-4 rounded-lg text-center flex-1">
+                    <p class="text-2xl font-bold text-amber-400">3+</p>
+                    <p class="text-sm">Years Experience</p>
+                </div>
+            </div>
+            
+            <a href="./Leon's CV.pdf" download class="bg-amber-600 hover:bg-amber-700 px-8 py-3 rounded-lg font-semibold transition-all text-slate-900 inline-block">
+                <button class="w-full h-full">
+                    Download CV
+                </button>
+            </a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold mb-12 text-center section-title">About Me</h2>
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="text-lg mb-6">
+                I am the owner of BYTEBURST Technologies Inc, a professional MERN stack developer , and I have completed extensive training through Udemy , where I have gained proficiency in a range of technologies and business development skills. I am highly skilled in my field and continuously strive to expand my knowledge and expertise.
+
+With a self-driven, detail-oriented approach, I thrive in fast-paced environments and am always eager to learn and take on new challenges. I am currently seeking a position where I can apply my skills, grow professionally, and contribute to the success of a dynamic organization. My goal is to continually improve, excel in my field, and remain adaptable to new opportunities and challenges.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-slate-800 p-4 rounded-lg">MERN Stack</div>
+                <div class="bg-slate-800 p-4 rounded-lg">AWS Solutions</div>
+                <div class="bg-slate-800 p-4 rounded-lg">Cloud Architecture</div>
+                <div class="bg-slate-800 p-4 rounded-lg">Web Development</div>
+                <div class="bg-slate-800 p-4 rounded-lg">Business Strategy</div>
+                <div class="bg-slate-800 p-4 rounded-lg">Team Leadership</div>
+            </div>
+            <a href="mailto:leon@byteburst.tech" class="bg-amber-600 hover:bg-amber-700 px-6 py-3 rounded-lg inline-block">
+                <i class="fas fa-envelope mr-2"></i>Contact via Email
+            </a>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <!-- Skills Section -->
+<section class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold mb-12 text-center section-title">Technical Skills</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- CSS -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-css3-alt"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">CSS</h3>
+            <p class="text-slate-400">Highly skilled in Cascading Style Sheets (CSS), with extensive experience in creating and implementing modern and responsive designs.</p>
+        </div>
+
+        <!-- Tailwind CSS -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-css3"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Tailwind CSS</h3>
+            <p class="text-slate-400">Proficient in Tailwind CSS, a utility-first CSS framework for rapidly building custom user interfaces.</p>
+        </div>
+
+        <!-- AWS Solution Architect -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-aws"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">AWS Solution Architect</h3>
+            <p class="text-slate-400">Certified AWS Solution Architect with experience in designing and deploying scalable, highly available, and fault-tolerant systems.</p>
+        </div>
+
+        <!-- AWS Node JS Developer -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-node-js"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">AWS Node JS Developer</h3>
+            <p class="text-slate-400">Experienced in developing serverless applications using AWS Lambda and Node.js.</p>
+        </div>
+
+        <!-- GitHub -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-github"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">GitHub</h3>
+            <p class="text-slate-400">Proficient in using GitHub for version control, collaboration, and project management.</p>
+        </div>
+
+        <!-- Emotional Intelligence -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Emotional Intelligence</h3>
+            <p class="text-slate-400">Skilled in emotional intelligence, with the ability to understand and manage my own emotions, and those of others.</p>
+        </div>
+
+        <!-- MongoDB -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fas fa-database"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">MongoDB</h3>
+            <p class="text-slate-400">Experienced in using MongoDB, a popular NoSQL database, for building scalable and high-performance applications.</p>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-js-square"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">JavaScript</h3>
+            <p class="text-slate-400">Skilled in JavaScript programming language, with extensive experience in building dynamic and interactive web applications.</p>
+        </div>
+
+        <!-- HTML5 -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-html5"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">HTML5</h3>
+            <p class="text-slate-400">Expert in Hypertext Markup Language (HTML), with experience in developing and maintaining web pages and applications.</p>
+        </div>
+
+        <!-- React -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-react"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">React</h3>
+            <p class="text-slate-400">Highly skilled in React, a popular JavaScript library for building user interfaces. Proficient in component-based architecture to create dynamic web applications.</p>
+        </div>
+
+        <!-- Bootstrap 5 -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-bootstrap"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Bootstrap 5</h3>
+            <p class="text-slate-400">Experienced in using Bootstrap to create responsive and mobile-friendly websites.</p>
+        </div>
+
+        <!-- AWS SysOps Administration -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-aws"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">AWS SysOps Administration</h3>
+            <p class="text-slate-400">Certified AWS SysOps Administrator with experience in managing and operating systems on the AWS platform.</p>
+        </div>
+
+        <!-- AWS Cloud Practitioner -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-aws"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">AWS Cloud Practitioner</h3>
+            <p class="text-slate-400">Certified AWS Cloud Practitioner with fundamental understanding of AWS Cloud concepts, services, and terminology.</p>
+        </div>
+        <!-- Python -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fab fa-python"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Python</h3>
+            <p class="text-slate-400">Proficient in Python programming with experience in building scalable applications and automation scripts.</p>
+        </div>
+
+        <!-- Pandas -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fas fa-table"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Pandas</h3>
+            <p class="text-slate-400">Skilled in data manipulation and analysis using Pandas for efficient data processing and cleaning.</p>
+        </div>
+
+        <!-- NumPy -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">NumPy</h3>
+            <p class="text-slate-400">Experienced in numerical computing with NumPy for complex mathematical operations and array processing.</p>
+        </div>
+
+        <!-- Express JS -->
+        <div class="bg-slate-800 p-6 rounded-xl hover:transform hover:-translate-y-2 transition-all">
+            <div class="text-amber-400 text-4xl mb-4">
+                <i class="fas fa-server"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Express JS</h3>
+            <p class="text-slate-400">Proficient in Express.js, a minimal and flexible Node.js web application framework.</p>
+        </div>
+    </div>
+</section>
+    <!-- Projects Section -->
+    <section class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold mb-12 text-center section-title">Featured Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Project 1 -->
+            <div class="bg-slate-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-2 transition-all group">
+                <div class="relative overflow-hidden">
+                    <img src="./byteburst.png" alt="Photo Sharing Platform" class="w-full h-48 object-cover group-hover:scale-105 transition-transform">
+                    <div class="absolute inset-0 bg-pink-500/10 group-hover:opacity-0 transition-opacity"></div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3 text-pink-400">Photo Sharing Platform</h3>
+                    <p class="text-slate-400 mb-4">A vibrant platform for sharing, discovering, and connecting through photos</p>
+                    
+                    <div class="flex gap-4 mb-4 flex-wrap">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">React</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Node.js</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">MongoDB</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Express.js</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Multer</span>
+                    </div>
+            
+                    <div class="flex gap-4">
+                        <a href="https://github.com/LeonMotaung/byteburst" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="flex items-center gap-2 text-pink-400 hover:text-pink-300">
+                            <i class="fab fa-github"></i> View Project
+                        </a>
+                        <a href="https://byteburst.onrender.com/" 
+                           class="flex items-center gap-2 text-pink-400 hover:text-pink-300">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="bg-slate-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-2 transition-all group">
+                <div class="relative overflow-hidden">
+                    <img src="./data-sciece.png" alt="Data Science Platform" class="w-full h-48 object-cover group-hover:scale-105 transition-transform">
+                    <div class="absolute inset-0 bg-amber-500/10 group-hover:opacity-0 transition-opacity"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3 text-amber-400">Data Science Insights Platform</h3>
+                    <p class="text-slate-400 mb-4">Advanced analytics platform for data exploration and predictive modeling</p>
+                    <div class="flex gap-4 mb-4 flex-wrap">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Pandas</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Scikit-learn</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TensorFlow</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/LeonMotaung/python" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="flex items-center gap-2 text-amber-400 hover:text-amber-300">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                        <a href="https://github.com/LeonMotaung/python" class="flex items-center gap-2 text-amber-400 hover:text-amber-300">
+                            <i class="fas fa-external-link-alt"></i> Live
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="bg-slate-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-2 transition-all group">
+                <div class="relative overflow-hidden">
+                    <img src="./Task Management.png" alt="Task Manager" class="w-full h-48 object-cover group-hover:scale-105 transition-transform">
+                    <div class="absolute inset-0 bg-amber-500/10 group-hover:opacity-0 transition-opacity"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3 text-amber-400">Task Management System Backend</h3>
+                    <p class="text-slate-400 mb-4">Collaborative project management tool with real-time updates</p>
+                    <div class="flex gap-4 mb-4 flex-wrap">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">JS</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Node.js</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Postman</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/LeonMotaung/Task-Management-Backend" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="flex items-center gap-2 text-amber-400 hover:text-amber-300">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                        <a href="https://github.com/LeonMotaung/Task-Management-Backend" class="flex items-center gap-2 text-amber-400 hover:text-amber-300">
+                            <i class="fas fa-external-link-alt"></i> Live
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="bg-slate-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-2 transition-all group">
+                <div class="relative overflow-hidden">
+                    <img src="./mafube.png" alt="Community Councillors" class="w-full h-48 object-cover group-hover:scale-105 transition-transform">
+                    <div class="absolute inset-0 bg-blue-500/10 group-hover:opacity-0 transition-opacity"></div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3 text-amber-400">Community Councillors Website</h3>
+                    <p class="text-slate-400 mb-4">A platform for connecting residents with their local councillors and community decisions</p>
+                    
+                    <div class="flex gap-4 mb-4 flex-wrap">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">HTML</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">CSS</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Node.js</span>
+                    </div>
+            
+                    <div class="flex gap-4">
+                        <a href="https://github.com/LeonMotaung/Mafube" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+                            <i class="fab fa-github"></i> View Project
+                        </a>
+                        <a href="https://mafube.onrender.com/" 
+                           class="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="bg-slate-800 rounded-xl overflow-hidden hover:transform hover:-translate-y-2 transition-all group">
+                <div class="relative overflow-hidden">
+                    <img src="./mental-health.png" alt="Mental Health Platform" class="w-full h-48 object-cover group-hover:scale-105 transition-transform">
+                    <div class="absolute inset-0 bg-blue-500/10 group-hover:opacity-0 transition-opacity"></div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3 text-amber-400">Mental Health Platform</h3>
+                    <p class="text-slate-400 mb-4">A supportive platform for mental health resources, therapy tools, and community connection</p>
+                    
+                    <div class="flex gap-4 mb-4 flex-wrap">
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Node.js</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">MongoDB</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">bcrypt</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">EJS</span>
+                    </div>
+            
+                    <div class="flex gap-4">
+                        <a href="https://github.com/LeonMotaung/final-mentalhealthapp"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+                            <i class="fab fa-github"></i> View Project
+                        </a>
+                        <a href="https://mentalhealthx.onrender.com/" 
+                           class="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Footer Section -->
+    <footer id="contact" class="bg-slate-800 border-t-4 border-amber-500 mt-16">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold mb-4 text-amber-400">BYTEBURST Technologies Inc</h3>
+                    <p class="text-slate-400 max-w-md">
+                        Transforming ideas into digital reality through innovative web solutions
+                    </p>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="text-lg font-semibold mb-4 text-amber-400">Connect with Me</h4>
+                    <div class="flex gap-6">
+                        <a href="https://github.com/LeonMotaung" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="text-amber-400 hover:text-amber-300 text-2xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/leonmotaung/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="text-amber-400 hover:text-amber-300 text-2xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-700 mt-12 pt-8 text-center">
+                <p class="text-slate-400">
+                    © 2025 Leon Motaung. Crafted with <span class="text-amber-400">♥</span> in South Africa
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        });
+        document.querySelectorAll('a, button, .hover-effect').forEach(element => {
+            element.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            element.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
