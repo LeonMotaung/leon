@@ -471,8 +471,105 @@ With a self-driven, detail-oriented approach, I thrive in fast-paced environment
             </div>
             </div>
         </div>
-    </section>
 
+    </section>
+<!------------->
+     <!-- Add this after the Projects section -->
+<section class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold mb-12 text-center section-title">Pomodoro Timer</h2>
+    <div class="max-w-xs mx-auto bg-slate-800 rounded-lg p-6">
+        <div class="text-center mb-6">
+            <div id="timer" class="text-5xl font-bold text-amber-400 mb-4">25:00</div>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <button id="startBtn" class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-lg font-semibold transition-all">
+                    Start
+                </button>
+                <button id="resetBtn" class="border-2 border-amber-600 hover:border-amber-700 px-4 py-2 rounded-lg font-semibold transition-all">
+                    Reset
+                </button>
+                <button id="breakBtn" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-semibold transition-all">
+                    Break Now
+                </button>
+            </div>
+        </div>
+        <div class="text-center text-sm text-slate-400">
+            <p>25 minutes focused work | 5 minutes break</p>
+        </div>
+        <!-- Audio element for alarm sound -->
+        <audio id="alarm" src="https://cdn.pixabay.com/download/audio/2024/11/20/audio_659d575689.mp3?filename=thailand-eas-alarm-2006-266492.mp3"></audio>
+    </div>
+</section>
+
+<script>
+    // Pomodoro Timer Logic
+    let timeLeft = 25 * 60;
+    let timerId = null;
+    let isRunning = false;
+    let isBreak = false;
+    const alarm = document.getElementById('alarm');
+
+    const timerDisplay = document.getElementById('timer');
+    const startBtn = document.getElementById('startBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const breakBtn = document.getElementById('breakBtn');
+
+    function updateDisplay() {
+        const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+        const seconds = (timeLeft % 60).toString().padStart(2, '0');
+        timerDisplay.textContent = `${minutes}:${seconds}`;
+    }
+
+    function startTimer() {
+        if (!isRunning) {
+            isRunning = true;
+            startBtn.textContent = 'Pause';
+            timerId = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                
+                if (timeLeft === 0) {
+                    clearInterval(timerId);
+                    isRunning = false;
+                    isBreak = !isBreak;
+                    timeLeft = (isBreak ? 5 : 25) * 60;
+                    startBtn.textContent = 'Start';
+                    updateDisplay();
+                    alarm.play(); // Play sound when timer completes
+                    alert(isBreak ? 'Time for a break!' : 'Time to get back to work!');
+                }
+            }, 1000);
+        } else {
+            clearInterval(timerId);
+            isRunning = false;
+            startBtn.textContent = 'Resume';
+        }
+    }
+
+    function resetTimer() {
+        clearInterval(timerId);
+        isRunning = false;
+        isBreak = false;
+        timeLeft = 25 * 60;
+        startBtn.textContent = 'Start';
+        updateDisplay();
+        alarm.pause();
+        alarm.currentTime = 0;
+    }
+
+    function switchToBreak() {
+        clearInterval(timerId);
+        isRunning = false;
+        isBreak = true;
+        timeLeft = 5 * 60;
+        updateDisplay();
+        startTimer();
+    }
+
+    startBtn.addEventListener('click', startTimer);
+    resetBtn.addEventListener('click', resetTimer);
+    breakBtn.addEventListener('click', switchToBreak);
+</script>
+     
     <!-- Contact/Footer Section -->
     <footer id="contact" class="bg-slate-800 border-t-4 border-amber-500 mt-16">
         <div class="container mx-auto px-6 py-12">
