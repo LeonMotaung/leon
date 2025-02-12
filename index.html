@@ -475,9 +475,14 @@ With a self-driven, detail-oriented approach, I thrive in fast-paced environment
     </section>
 <!------------->
      <!-- Add this after the Projects section -->
-<section class="container mx-auto px-6 py-16">
+<section class="container mx-auto px-6 py-16 relative">
     <h2 class="text-3xl font-bold mb-12 text-center section-title">Pomodoro Timer</h2>
-    <div class="max-w-xs mx-auto bg-slate-800 rounded-lg p-6">
+    <div id="timerContainer" class="max-w-xs mx-auto bg-slate-800 rounded-lg p-6 relative transition-all">
+        <!-- Fullscreen button -->
+        <button id="fullscreenBtn" class="absolute top-4 right-4 text-slate-400 hover:text-amber-400 transition-colors">
+            <i class="fas fa-expand"></i>
+        </button>
+        
         <div class="text-center mb-6">
             <div id="timer" class="text-5xl font-bold text-amber-400 mb-4">25:00</div>
             <div class="flex justify-center gap-4 flex-wrap">
@@ -495,81 +500,89 @@ With a self-driven, detail-oriented approach, I thrive in fast-paced environment
         <div class="text-center text-sm text-slate-400">
             <p>25 minutes focused work | 5 minutes break</p>
         </div>
-        <!-- Audio element for alarm sound -->
         <audio id="alarm" src="https://cdn.pixabay.com/download/audio/2024/11/20/audio_659d575689.mp3?filename=thailand-eas-alarm-2006-266492.mp3"></audio>
     </div>
 </section>
 
 <script>
-    // Pomodoro Timer Logic
-    let timeLeft = 25 * 60;
-    let timerId = null;
-    let isRunning = false;
-    let isBreak = false;
-    const alarm = document.getElementById('alarm');
+    // Fullscreen functionality
+    const timerContainer = document.getElementById('timerContainer');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
 
-    const timerDisplay = document.getElementById('timer');
-    const startBtn = document.getElementById('startBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const breakBtn = document.getElementById('breakBtn');
-
-    function updateDisplay() {
-        const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-        const seconds = (timeLeft % 60).toString().padStart(2, '0');
-        timerDisplay.textContent = `${minutes}:${seconds}`;
-    }
-
-    function startTimer() {
-        if (!isRunning) {
-            isRunning = true;
-            startBtn.textContent = 'Pause';
-            timerId = setInterval(() => {
-                timeLeft--;
-                updateDisplay();
-                
-                if (timeLeft === 0) {
-                    clearInterval(timerId);
-                    isRunning = false;
-                    isBreak = !isBreak;
-                    timeLeft = (isBreak ? 5 : 25) * 60;
-                    startBtn.textContent = 'Start';
-                    updateDisplay();
-                    alarm.play(); // Play sound when timer completes
-                    alert(isBreak ? 'Time for a break!' : 'Time to get back to work!');
-                }
-            }, 1000);
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            if (timerContainer.requestFullscreen) {
+                timerContainer.requestFullscreen();
+            } else if (timerContainer.webkitRequestFullscreen) { /* Safari */
+                timerContainer.webkitRequestFullscreen();
+            } else if (timerContainer.msRequestFullscreen) { /* IE11 */
+                timerContainer.msRequestFullscreen();
+            }
+            timerContainer.classList.add('h-screen', 'w-screen', 'max-w-none', 'rounded-none');
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
         } else {
-            clearInterval(timerId);
-            isRunning = false;
-            startBtn.textContent = 'Resume';
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+            timerContainer.classList.remove('h-screen', 'w-screen', 'max-w-none', 'rounded-none');
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
         }
     }
 
+    // Update icon when exiting fullscreen
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            timerContainer.classList.remove('h-screen', 'w-screen', 'max-w-none', 'rounded-none');
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+    });
+
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    // Add this to your existing resetTimer function
     function resetTimer() {
-        clearInterval(timerId);
-        isRunning = false;
-        isBreak = false;
-        timeLeft = 25 * 60;
-        startBtn.textContent = 'Start';
-        updateDisplay();
-        alarm.pause();
-        alarm.currentTime = 0;
+        // ... existing reset code ...
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
     }
 
-    function switchToBreak() {
-        clearInterval(timerId);
-        isRunning = false;
-        isBreak = true;
-        timeLeft = 5 * 60;
-        updateDisplay();
-        startTimer();
-    }
+    // Add to your existing CSS
+    <style>
+        #timerContainer:-webkit-full-screen {
+            background-color: #0F172A;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #timerContainer:-moz-full-screen {
+            background-color: #0F172A;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #timerContainer:fullscreen {
+            background-color: #0F172A;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-    startBtn.addEventListener('click', startTimer);
-    resetBtn.addEventListener('click', resetTimer);
-    breakBtn.addEventListener('click', switchToBreak);
+        #timerContainer:fullscreen #timer {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+        }
+    </style>
 </script>
-     
     <!-- Contact/Footer Section -->
     <footer id="contact" class="bg-slate-800 border-t-4 border-amber-500 mt-16">
         <div class="container mx-auto px-6 py-12">
