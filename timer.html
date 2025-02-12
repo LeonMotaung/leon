@@ -1,14 +1,14 @@
-<iframe srcdoc="
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Pomodoro Timer</title>
-    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap' rel='stylesheet'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'>
-    <script src='https://cdn.tailwindcss.com'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leon Motaung - Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Previous styles remain the same */
         .custom-cursor {
             width: 20px;
             height: 20px;
@@ -30,109 +30,201 @@
             color: #CBD5E1;
             font-family: 'Poppins', sans-serif;
             padding-bottom: 100px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: #f59e0b;
+        }
+        /* Fullscreen styles */
+        #timerContainer:fullscreen {
+            background-color: #0F172A;
+            display: flex !important;
             justify-content: center;
-            height: 100vh;
-            text-align: center;
+            align-items: center;
+            padding: 2rem;
         }
-        .timer {
-            font-size: 6rem;
-            font-family: monospace;
+        #timerContainer:fullscreen #timer {
+            font-size: 8rem;
+            margin-bottom: 2rem;
         }
-        .buttons button {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border: none;
-            cursor: pointer;
-            border-radius: 10px;
+        #timerContainer:fullscreen .controls {
+            flex-direction: row;
+            gap: 2rem;
         }
-        .start {
-            background-color: green;
-            color: white;
-        }
-        .reset {
-            background-color: red;
-            color: white;
-        }
-        .break {
-            background-color: blue;
-            color: white;
+        #timerContainer:fullscreen button {
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
         }
     </style>
-    <script>
-        let isRunning = false;
-        let timer;
-        let timeLeft = 1500;
-        let isBreak = false;
-        const alarmSound = new Audio('https://cdn.pixabay.com/download/audio/2024/10/10/audio_a352d048b9.mp3?filename=usa-eas-alarm-249125.mp3');
+</head>
+<body>
+    <!-- Existing body content remains the same until Projects section -->
 
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-            const seconds = (timeLeft % 60).toString().padStart(2, '0');
-            document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+    <!-- Pomodoro Timer Section -->
+    <section class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold mb-12 text-center section-title">Pomodoro Timer</h2>
+        <div id="timerContainer" class="max-w-xs mx-auto bg-slate-800 rounded-lg p-6 relative transition-all duration-300">
+            <button id="fullscreenBtn" class="absolute top-4 right-4 text-slate-400 hover:text-amber-400 transition-colors">
+                <i class="fas fa-expand text-xl"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <div id="timer" class="text-5xl font-bold text-amber-400 mb-4">25:00</div>
+                <div class="flex justify-center gap-4 flex-wrap controls">
+                    <button id="startBtn" class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-lg font-semibold transition-all">
+                        Start
+                    </button>
+                    <button id="resetBtn" class="border-2 border-amber-600 hover:border-amber-700 px-4 py-2 rounded-lg font-semibold transition-all">
+                        Reset
+                    </button>
+                    <button id="breakBtn" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-semibold transition-all">
+                        Break Now
+                    </button>
+                </div>
+            </div>
+            <div class="text-center text-sm text-slate-400">
+                <p>25 minutes focused work | 5 minutes break</p>
+            </div>
+            <audio id="alarm" src="https://cdn.pixabay.com/download/audio/2024/11/20/audio_659d575689.mp3?filename=thailand-eas-alarm-2006-266492.mp3"></audio>
+        </div>
+    </section>
+
+    <!-- Existing footer and other sections -->
+
+    <script>
+        // Fullscreen functionality
+        const timerContainer = document.getElementById('timerContainer');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                if (timerContainer.requestFullscreen) {
+                    timerContainer.requestFullscreen();
+                } else if (timerContainer.webkitRequestFullscreen) { // Safari
+                    timerContainer.webkitRequestFullscreen();
+                } else if (timerContainer.msRequestFullscreen) { // IE11
+                    timerContainer.msRequestFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress text-xl"></i>';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { // Safari
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE11
+                    document.msExitFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand text-xl"></i>';
+            }
         }
 
-        function toggleTimer() {
-            if (isRunning) {
-                clearInterval(timer);
-                isRunning = false;
-            } else {
-                timer = setInterval(() => {
-                    if (timeLeft > 0) {
-                        timeLeft--;
-                        updateTimerDisplay();
-                        if (timeLeft === 10) {
-                            alarmSound.play();
-                        }
-                    } else {
-                        clearInterval(timer);
+        // Handle fullscreen change events
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand text-xl"></i>';
+            }
+        });
+
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+        // Pomodoro Timer Logic
+        let timeLeft = 25 * 60;
+        let timerId = null;
+        let isRunning = false;
+        let isBreak = false;
+        const alarm = document.getElementById('alarm');
+
+        const timerDisplay = document.getElementById('timer');
+        const startBtn = document.getElementById('startBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const breakBtn = document.getElementById('breakBtn');
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const seconds = (timeLeft % 60).toString().padStart(2, '0');
+            timerDisplay.textContent = `${minutes}:${seconds}`;
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                startBtn.textContent = 'Pause';
+                timerId = setInterval(() => {
+                    timeLeft--;
+                    updateDisplay();
+                    
+                    if (timeLeft === 0) {
+                        clearInterval(timerId);
                         isRunning = false;
-                        alarmSound.play();
-                        setTimeout(startBreak, 10000);
+                        isBreak = !isBreak;
+                        timeLeft = (isBreak ? 5 : 25) * 60;
+                        startBtn.textContent = 'Start';
+                        updateDisplay();
+                        alarm.play();
+                        alert(isBreak ? 'Time for a break!' : 'Time to get back to work!');
                     }
                 }, 1000);
-                isRunning = true;
+            } else {
+                clearInterval(timerId);
+                isRunning = false;
+                startBtn.textContent = 'Resume';
             }
         }
 
         function resetTimer() {
-            clearInterval(timer);
+            clearInterval(timerId);
             isRunning = false;
-            timeLeft = isBreak ? 300 : 1500;
-            updateTimerDisplay();
-        }
-
-        function startBreak() {
-            isBreak = true;
-            document.getElementById('status').textContent = 'Break Time!';
-            timeLeft = 300;
-            alarmSound.play();
-            updateTimerDisplay();
-            toggleTimer();
-        }
-
-        function endBreak() {
             isBreak = false;
-            document.getElementById('status').textContent = 'Focus Time!';
-            timeLeft = 1500;
-            alarmSound.play();
-            updateTimerDisplay();
+            timeLeft = 25 * 60;
+            startBtn.textContent = 'Start';
+            updateDisplay();
+            alarm.pause();
+            alarm.currentTime = 0;
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
         }
 
-        document.addEventListener('DOMContentLoaded', updateTimerDisplay);
+        function switchToBreak() {
+            clearInterval(timerId);
+            isRunning = false;
+            isBreak = true;
+            timeLeft = 5 * 60;
+            updateDisplay();
+            startTimer();
+        }
+
+        startBtn.addEventListener('click', startTimer);
+        resetBtn.addEventListener('click', resetTimer);
+        breakBtn.addEventListener('click', switchToBreak);
+
+        // Existing cursor and smooth scroll code
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        });
+        document.querySelectorAll('a, button, .hover-effect').forEach(element => {
+            element.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            element.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
-</head>
-<body>
-    <h1 id='status'>Focus Time!</h1>
-    <div class='timer' id='timer'>25:00</div>
-    <div class='buttons'>
-        <button class='start' onclick='toggleTimer()'>Start/Pause</button>
-        <button class='reset' onclick='resetTimer()'>Reset</button>
-        <button class='break' onclick='startBreak()'>Break</button>
-    </div>
 </body>
 </html>
-" width="100%" height="500px" style="border:none;"></iframe>
