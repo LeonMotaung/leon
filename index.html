@@ -510,36 +510,31 @@ With a self-driven, detail-oriented approach, I thrive in fast-paced environment
     const fullscreenBtn = document.getElementById('fullscreenBtn');
 
     function toggleFullscreen() {
-        if (!document.fullscreenElement) {
-            if (timerContainer.requestFullscreen) {
-                timerContainer.requestFullscreen();
-            } else if (timerContainer.webkitRequestFullscreen) { /* Safari */
-                timerContainer.webkitRequestFullscreen();
-            } else if (timerContainer.msRequestFullscreen) { /* IE11 */
-                timerContainer.msRequestFullscreen();
-            }
-            timerContainer.classList.add('h-screen', 'w-screen', 'max-w-none', 'rounded-none');
+    if (!document.fullscreenElement) {
+        timerContainer.requestFullscreen().then(() => {
             fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) { /* Safari */
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) { /* IE11 */
-                document.msExitFullscreen();
-            }
-            timerContainer.classList.remove('h-screen', 'w-screen', 'max-w-none', 'rounded-none');
+        }).catch(err => {
+            console.error(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen().then(() => {
             fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-        }
+        }).catch(err => {
+            console.error(`Error attempting to exit fullscreen: ${err.message}`);
+        });
     }
+}
+
 
     // Update icon when exiting fullscreen
     document.addEventListener('fullscreenchange', () => {
-        if (!document.fullscreenElement) {
-            timerContainer.classList.remove('h-screen', 'w-screen', 'max-w-none', 'rounded-none');
-            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-        }
-    });
+    if (!document.fullscreenElement) {
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+    } else {
+        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+    }
+});
+
 
     fullscreenBtn.addEventListener('click', toggleFullscreen);
 
@@ -582,8 +577,7 @@ With a self-driven, detail-oriented approach, I thrive in fast-paced environment
             margin-bottom: 2rem;
         }
     </style>
-</script>
-    <!-- Contact/Footer Section -->
+</script>    <!-- Contact/Footer Section -->
     <footer id="contact" class="bg-slate-800 border-t-4 border-amber-500 mt-16">
         <div class="container mx-auto px-6 py-12">
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
