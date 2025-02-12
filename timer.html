@@ -259,6 +259,31 @@
             element.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
             element.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
         });
+
+        // Detect landscape orientation and go fullscreen automatically
+        window.addEventListener('orientationchange', function () {
+            if (window.innerHeight < window.innerWidth) {
+                if (!document.fullscreenElement) {
+                    if (timerContainer.requestFullscreen) {
+                        timerContainer.requestFullscreen();
+                    } else if (timerContainer.webkitRequestFullscreen) {
+                        timerContainer.webkitRequestFullscreen();
+                    } else if (timerContainer.msRequestFullscreen) {
+                        timerContainer.msRequestFullscreen();
+                    }
+                }
+            } else {
+                if (document.fullscreenElement) {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>
