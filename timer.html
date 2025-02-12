@@ -8,7 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Previous styles remain the same */
+        body {
+            background-color: #0F172A;
+            color: #CBD5E1;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
         .custom-cursor {
             width: 20px;
             height: 20px;
@@ -24,87 +33,90 @@
             background: #f59e0b;
             opacity: 0.5;
         }
-        body {
-            cursor: none;
-            background-color: #0F172A;
-            color: #CBD5E1;
-            font-family: 'Poppins', sans-serif;
-            padding-bottom: 100px;
-        }
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 50%;
-            height: 3px;
-            background: #f59e0b;
-        }
-        /* Fullscreen styles */
-        #timerContainer:fullscreen {
-            background-color: #0F172A;
-            display: flex !important;
-            justify-content: center;
+        #timerContainer {
+            background-color: #1e293b;
+            border-radius: 1rem;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 2rem;
+            text-align: center;
+            position: relative;
         }
-        #timerContainer:fullscreen #timer {
-            font-size: 8rem;
+        #timer {
+            font-size: 10rem;  /* Very big font size */
+            font-weight: bold;
+            color: #f59e0b;
             margin-bottom: 2rem;
         }
-        #timerContainer:fullscreen .controls {
-            flex-direction: row;
+        .controls {
+            display: flex;
             gap: 2rem;
         }
-        #timerContainer:fullscreen button {
-            padding: 1rem 2rem;
+        .controls button {
+            padding: 1rem 3rem;
+            font-size: 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .controls button:hover {
+            opacity: 0.8;
+        }
+        .bg-amber-600 { background-color: #f59e0b; }
+        .bg-green-600 { background-color: #10b981; }
+        .border-amber-600 { border-color: #f59e0b; }
+        .section-info {
             font-size: 1.25rem;
+            color: #CBD5E1;
+            margin-top: 2rem;
+        }
+        .fullscreen-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: #CBD5E1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .fullscreen-btn:hover {
+            color: #f59e0b;
         }
     </style>
 </head>
 <body>
-    <!-- Existing body content remains the same until Projects section -->
 
-    <!-- Pomodoro Timer Section -->
-    <section class="container mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold mb-12 text-center section-title">Pomodoro Timer</h2>
-        <div id="timerContainer" class="max-w-xs mx-auto bg-slate-800 rounded-lg p-6 relative transition-all duration-300">
-            <button id="fullscreenBtn" class="absolute top-4 right-4 text-slate-400 hover:text-amber-400 transition-colors">
-                <i class="fas fa-expand text-xl"></i>
+    <div id="timerContainer">
+        <button id="fullscreenBtn" class="fullscreen-btn">
+            <i class="fas fa-expand text-xl"></i>
+        </button>
+
+        <div id="timer">25:00</div>
+
+        <div class="controls">
+            <button id="startBtn" class="bg-amber-600 hover:bg-amber-700">
+                Start
             </button>
-            
-            <div class="text-center mb-6">
-                <div id="timer" class="text-5xl font-bold text-amber-400 mb-4">25:00</div>
-                <div class="flex justify-center gap-4 flex-wrap controls">
-                    <button id="startBtn" class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-lg font-semibold transition-all">
-                        Start
-                    </button>
-                    <button id="resetBtn" class="border-2 border-amber-600 hover:border-amber-700 px-4 py-2 rounded-lg font-semibold transition-all">
-                        Reset
-                    </button>
-                    <button id="breakBtn" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-semibold transition-all">
-                        Break Now
-                    </button>
-                </div>
-            </div>
-            <div class="text-center text-sm text-slate-400">
-                <p>25 minutes focused work | 5 minutes break</p>
-            </div>
-            <audio id="alarm" src="https://cdn.pixabay.com/download/audio/2024/11/20/audio_659d575689.mp3?filename=thailand-eas-alarm-2006-266492.mp3"></audio>
+            <button id="resetBtn" class="border-2 border-amber-600 hover:border-amber-700">
+                Reset
+            </button>
+            <button id="breakBtn" class="bg-green-600 hover:bg-green-700">
+                Break Now
+            </button>
         </div>
-    </section>
 
-    <!-- Existing footer and other sections -->
+        <div class="section-info">
+            <p>25 minutes focused work | 5 minutes break</p>
+        </div>
+    </div>
+
+    <audio id="alarm" src="https://cdn.pixabay.com/download/audio/2024/11/20/audio_659d575689.mp3?filename=thailand-eas-alarm-2006-266492.mp3"></audio>
 
     <script>
         // Fullscreen functionality
         const timerContainer = document.getElementById('timerContainer');
         const fullscreenBtn = document.getElementById('fullscreenBtn');
-
+        
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
                 if (timerContainer.requestFullscreen) {
@@ -126,14 +138,6 @@
                 fullscreenBtn.innerHTML = '<i class="fas fa-expand text-xl"></i>';
             }
         }
-
-        // Handle fullscreen change events
-        document.addEventListener('fullscreenchange', () => {
-            if (!document.fullscreenElement) {
-                fullscreenBtn.innerHTML = '<i class="fas fa-expand text-xl"></i>';
-            }
-        });
-
         fullscreenBtn.addEventListener('click', toggleFullscreen);
 
         // Pomodoro Timer Logic
@@ -161,7 +165,6 @@
                 timerId = setInterval(() => {
                     timeLeft--;
                     updateDisplay();
-                    
                     if (timeLeft === 0) {
                         clearInterval(timerId);
                         isRunning = false;
@@ -189,9 +192,6 @@
             updateDisplay();
             alarm.pause();
             alarm.currentTime = 0;
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-            }
         }
 
         function switchToBreak() {
@@ -207,8 +207,10 @@
         resetBtn.addEventListener('click', resetTimer);
         breakBtn.addEventListener('click', switchToBreak);
 
-        // Existing cursor and smooth scroll code
-        const cursor = document.querySelector('.custom-cursor');
+        // Custom Cursor Logic
+        const cursor = document.createElement('div');
+        cursor.classList.add('custom-cursor');
+        document.body.appendChild(cursor);
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.pageX + 'px';
             cursor.style.top = e.pageY + 'px';
@@ -216,14 +218,6 @@
         document.querySelectorAll('a, button, .hover-effect').forEach(element => {
             element.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
             element.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-        });
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
         });
     </script>
 </body>
