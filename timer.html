@@ -1,0 +1,138 @@
+<iframe srcdoc="
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Pomodoro Timer</title>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap' rel='stylesheet'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <style>
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f59e0b;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        .custom-cursor.hovered {
+            transform: scale(1.5);
+            background: #f59e0b;
+            opacity: 0.5;
+        }
+        body {
+            cursor: none;
+            background-color: #0F172A;
+            color: #CBD5E1;
+            font-family: 'Poppins', sans-serif;
+            padding-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .timer {
+            font-size: 6rem;
+            font-family: monospace;
+        }
+        .buttons button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .start {
+            background-color: green;
+            color: white;
+        }
+        .reset {
+            background-color: red;
+            color: white;
+        }
+        .break {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+    <script>
+        let isRunning = false;
+        let timer;
+        let timeLeft = 1500;
+        let isBreak = false;
+        const alarmSound = new Audio('https://cdn.pixabay.com/download/audio/2024/10/10/audio_a352d048b9.mp3?filename=usa-eas-alarm-249125.mp3');
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const seconds = (timeLeft % 60).toString().padStart(2, '0');
+            document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+        }
+
+        function toggleTimer() {
+            if (isRunning) {
+                clearInterval(timer);
+                isRunning = false;
+            } else {
+                timer = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateTimerDisplay();
+                        if (timeLeft === 10) {
+                            alarmSound.play();
+                        }
+                    } else {
+                        clearInterval(timer);
+                        isRunning = false;
+                        alarmSound.play();
+                        setTimeout(startBreak, 10000);
+                    }
+                }, 1000);
+                isRunning = true;
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            isRunning = false;
+            timeLeft = isBreak ? 300 : 1500;
+            updateTimerDisplay();
+        }
+
+        function startBreak() {
+            isBreak = true;
+            document.getElementById('status').textContent = 'Break Time!';
+            timeLeft = 300;
+            alarmSound.play();
+            updateTimerDisplay();
+            toggleTimer();
+        }
+
+        function endBreak() {
+            isBreak = false;
+            document.getElementById('status').textContent = 'Focus Time!';
+            timeLeft = 1500;
+            alarmSound.play();
+            updateTimerDisplay();
+        }
+
+        document.addEventListener('DOMContentLoaded', updateTimerDisplay);
+    </script>
+</head>
+<body>
+    <h1 id='status'>Focus Time!</h1>
+    <div class='timer' id='timer'>25:00</div>
+    <div class='buttons'>
+        <button class='start' onclick='toggleTimer()'>Start/Pause</button>
+        <button class='reset' onclick='resetTimer()'>Reset</button>
+        <button class='break' onclick='startBreak()'>Break</button>
+    </div>
+</body>
+</html>
+" width="100%" height="500px" style="border:none;"></iframe>
