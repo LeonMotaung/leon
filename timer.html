@@ -91,36 +91,64 @@
             .controls {
                 flex-direction: column;
                 align-items: center;
+                margin-bottom: 2rem;
             }
             #fullscreenBtn {
                 margin-top: 2rem;
             }
+            .fullscreen-btn {
+                top: unset;
+                right: unset;
+                margin-top: 1rem;
+                position: relative;
+            }
+            .fullscreen-btn-mobile {
+                display: block;
+            }
+            #resetBtn {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Hide elements in fullscreen */
+        #fullscreenTimerContainer:fullscreen #timerContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        #fullscreenTimerContainer:fullscreen .controls,
+        #fullscreenTimerContainer:fullscreen .section-info {
+            display: none;
         }
     </style>
 </head>
 <body>
 
     <div id="timerContainer">
-        <button id="fullscreenBtn" class="fullscreen-btn">
-            <i class="fas fa-expand text-xl"></i>
-        </button>
-
-        <div id="timer">25:00</div>
-
-        <div class="controls">
-            <button id="startBtn" class="bg-amber-600 hover:bg-amber-700">
-                Start
+        <div id="fullscreenTimerContainer">
+            <button id="fullscreenBtn" class="fullscreen-btn">
+                <i class="fas fa-expand text-xl"></i>
             </button>
-            <button id="resetBtn" class="border-2 border-amber-600 hover:border-amber-700">
-                Reset
-            </button>
-            <button id="breakBtn" class="bg-green-600 hover:bg-green-700">
-                Break Now
-            </button>
-        </div>
+            
+            <div id="timer">25:00</div>
 
-        <div class="section-info">
-            <p>25 minutes focused work | 5 minutes break</p>
+            <div class="controls">
+                <button id="startBtn" class="bg-amber-600 hover:bg-amber-700">
+                    Start
+                </button>
+                <button id="resetBtn" class="border-2 border-amber-600 hover:border-amber-700">
+                    Reset
+                </button>
+                <button id="breakBtn" class="bg-green-600 hover:bg-green-700">
+                    Break Now
+                </button>
+            </div>
+
+            <div class="section-info">
+                <p>25 minutes focused work | 5 minutes break</p>
+            </div>
         </div>
     </div>
 
