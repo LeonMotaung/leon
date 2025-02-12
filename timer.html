@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
+            cursor: none;
             background-color: #0F172A;
             color: #CBD5E1;
             font-family: 'Poppins', sans-serif;
@@ -42,6 +43,8 @@
             align-items: center;
             text-align: center;
             position: relative;
+            max-width: 100%;
+            width: 100%;
         }
         #timer {
             font-size: 10rem;  /* Very big font size */
@@ -81,6 +84,17 @@
         }
         .fullscreen-btn:hover {
             color: #f59e0b;
+        }
+
+        /* Mobile Specific Styles */
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            #fullscreenBtn {
+                margin-top: 2rem;
+            }
         }
     </style>
 </head>
@@ -208,9 +222,7 @@
         breakBtn.addEventListener('click', switchToBreak);
 
         // Custom Cursor Logic
-        const cursor = document.createElement('div');
-        cursor.classList.add('custom-cursor');
-        document.body.appendChild(cursor);
+        const cursor = document.querySelector('.custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.pageX + 'px';
             cursor.style.top = e.pageY + 'px';
