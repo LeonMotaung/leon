@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leon Motaung - Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            cursor: none;
+            background-color: #f8f8f8;
+            color: #222;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #555;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        .custom-cursor.hovered {
+            transform: scale(1.5);
+            background: #555;
+            opacity: 0.5;
+        }
+        #timerContainer {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            max-width: 100%;
+            width: 100%;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ddd;
+        }
+        #timer {
+            font-size: 10rem;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 2rem;
+        }
+        .controls {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        .session-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .controls button, .session-controls button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .controls button:hover, .session-controls button:hover {
+            opacity: 0.8;
+        }
+        .bg-black { background-color: #222; color: white; }
+        .bg-gray-100 { background-color: #f5f5f5; color: #222; }
+        .border-black { border-color: #222; }
+        .active-session {
+            background-color: #222 !important;
+            color: white !important;
+        }
+        .section-info {
+            font-size: 1.25rem;
+            color: #555;
+            margin-top: 1rem;
+        }
+        .fullscreen-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .fullscreen-btn:hover {
+            color: #222;
+        }
+
+        /* Mobile Specific Styles */
+        @media (max-width: 768px) {
+            #timerContainer {
+                padding: 2rem;
+            }
+            .controls, .session-controls {
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 1rem;
+                gap: 1rem;
+            }
+            .fullscreen-btn {
+                top: unset;
+                right: unset;
+                margin-top: 1rem;
+                position: relative;
+            }
+            #timer {
+                font-size: 6rem;
+            }
+            .controls button, .session-controls button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+                width: 100%;
+            }
+        }
+
+        /* Landscape Mobile Styles */
+        @media (orientation: landscape) and (max-width: 768px) {
+            #timer {
+                font-size: 8rem;
+            }
+        }
+
+        /* Hide elements in fullscreen */
+        #fullscreenTimerContainer:fullscreen #timerContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        #fullscreenTimerContainer:fullscreen .controls,
+        #fullscreenTimerContainer:fullscreen .section-info,
+        #fullscreenTimerContainer:fullscreen .session-controls {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="timerContainer">
+        <div id="fullscreenTimerContainer">
+            <button id="fullscreenBtn" class="fullscreen-btn">
+                <i class="fas fa-expand text-xl"></i>
+            </button>
+            
+            <div id="timer">45:00</div>
+
+            <div class="session-controls">
+                <button id="shortSessionBtn" class="bg-black active-session">
+                    45 Min Session
+                </button>
+                <button id="longSessionBtn" class="bg-gray-100">
+                    2 Hour Session
+                </button>
+            </div>
+
+            <div class="controls">
+                <button id="startBtn" class="bg-black hover:bg-gray-800">
+                    Start
+                </button>
+                <button id="resetBtn" class="border-2 border-black hover:border-gray-800">
+                    Reset
+                </button>
+                <button id="breakBtn" class="bg-gray-100 hover:bg-gray-200">
+                    Break Now
+                </button>
+            </div>
+
+            <div class="section-info">
+                <p id="sessionInfo">45 minutes focused work | 10 minutes break</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="alarm" src="https://cdn.pixabay.com/download/audio/2024/11/20/audio_659d575689.mp3?filename=thailand-eas-alarm-2006-266492.mp3"></audio>
+
+    <script>
+        // Fullscreen functionality
+        const timerContainer = document.getElementById('timerContainer');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                if (timerContainer.requestFullscreen) {
+                    timerContainer.requestFullscreen();
+                } else if (timerContainer.webkitRequestFullscreen) { // Safari
+                    timerContainer.webkitRequestFullscreen();
+                } else if (timerContainer.msRequestFullscreen) { // IE11
+                    timerContainer.msRequestFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress text-xl"></i>';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { // Safari
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE11
+                    document.msExitFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand text-xl"></i>';
+            }
+        }
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+        // Pomodoro Timer Logic
+        let timeLeft = 45 * 60;
+        let timerId = null;
+        let isRunning = false;
+        let isBreak = false;
+        let currentSession = 'short'; // 'short' or 'long'
+        const alarm = document.getElementById('alarm');
+
+        const timerDisplay = document.getElementById('timer');
+        const startBtn = document.getElementById('startBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const breakBtn = document.getElementById('breakBtn');
+        const shortSessionBtn = document.getElementById('shortSessionBtn');
+        const longSessionBtn = document.getElementById('longSessionBtn');
+        const sessionInfo = document.getElementById('sessionInfo');
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const seconds = (timeLeft % 60).toString().padStart(2, '0');
+            timerDisplay.textContent = `${minutes}:${seconds}`;
+        }
+
+        function setSession(type) {
+            currentSession = type;
+            if (type === 'short') {
+                timeLeft = 45 * 60;
+                shortSessionBtn.classList.add('active-session');
+                longSessionBtn.classList.remove('active-session');
+                sessionInfo.textContent = '45 minutes focused work | 10 minutes break';
+            } else {
+                timeLeft = 120 * 60;
+                longSessionBtn.classList.add('active-session');
+                shortSessionBtn.classList.remove('active-session');
+                sessionInfo.textContent = '2 hours focused work | 30 minutes break';
+            }
+            updateDisplay();
+            resetTimer();
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                startBtn.textContent = 'Pause';
+                timerId = setInterval(() => {
+                    timeLeft--;
+                    updateDisplay();
+                    if (timeLeft === 0) {
+                        clearInterval(timerId);
+                        isRunning = false;
+                        isBreak = !isBreak;
+                        if (isBreak) {
+                            timeLeft = (currentSession === 'short' ? 10 : 30) * 60;
+                        } else {
+                            timeLeft = (currentSession === 'short' ? 45 : 120) * 60;
+                        }
+                        startBtn.textContent = 'Start';
+                        updateDisplay();
+                        alarm.play();
+                        alert(isBreak ? 'Time for a break!' : 'Time to get back to work!');
+                    }
+                }, 1000);
+            } else {
+                clearInterval(timerId);
+                isRunning = false;
+                startBtn.textContent = 'Resume';
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerId);
+            isRunning = false;
+            isBreak = false;
+            timeLeft = (currentSession === 'short' ? 45 : 120) * 60;
+            startBtn.textContent = 'Start';
+            updateDisplay();
+            alarm.pause();
+            alarm.currentTime = 0;
+        }
+
+        function switchToBreak() {
+            clearInterval(timerId);
+            isRunning = false;
+            isBreak = true;
+            timeLeft = (currentSession === 'short' ? 10 : 30) * 60;
+            updateDisplay();
+            startTimer();
+        }
+
+        startBtn.addEventListener('click', startTimer);
+        resetBtn.addEventListener('click', resetTimer);
+        breakBtn.addEventListener('click', switchToBreak);
+        shortSessionBtn.addEventListener('click', () => setSession('short'));
+        longSessionBtn.addEventListener('click', () => setSession('long'));
+
+        // Initialize with short session
+        setSession('short');
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        });
+        document.querySelectorAll('a, button, .hover-effect').forEach(element => {
+            element.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            element.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // Detect landscape orientation and go fullscreen automatically
+        window.addEventListener('orientationchange', function () {
+            if (window.innerHeight < window.innerWidth) {
+                if (!document.fullscreenElement) {
+                    if (timerContainer.requestFullscreen) {
+                        timerContainer.requestFullscreen();
+                    } else if (timerContainer.webkitRequestFullscreen) {
+                        timerContainer.webkitRequestFullscreen();
+                    } else if (timerContainer.msRequestFullscreen) {
+                        timerContainer.msRequestFullscreen();
+                    }
+                }
+            } else {
+                if (document.fullscreenElement) {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
