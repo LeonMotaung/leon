@@ -109,6 +109,25 @@
             border-width: 0;
         }
 
+        /* Fullscreen styles */
+        #timerContainer:fullscreen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            padding: 0;
+        }
+        #timerContainer:fullscreen .controls,
+        #timerContainer:fullscreen .section-info,
+        #timerContainer:fullscreen .session-controls,
+        #timerContainer:fullscreen #fullscreenBtn {
+            display: none;
+        }
+        #timerContainer:fullscreen #timer {
+            font-size: 20vw;
+            margin: 0;
+        }
+
         @media (max-width: 768px) {
             #timerContainer {
                 padding: 2rem;
@@ -140,56 +159,41 @@
                 font-size: 8rem;
             }
         }
-
-        #fullscreenTimerContainer:fullscreen #timerContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-
-        #fullscreenTimerContainer:fullscreen .controls,
-        #fullscreenTimerContainer:fullscreen .section-info,
-        #fullscreenTimerContainer:fullscreen .session-controls {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div class="custom-cursor"></div>
     
     <div id="timerContainer">
-        <div id="fullscreenTimerContainer">
-            <button id="fullscreenBtn" class="fullscreen-btn" aria-label="Toggle fullscreen">
-                <i class="fas fa-expand text-xl"></i>
+        <button id="fullscreenBtn" class="fullscreen-btn" aria-label="Toggle fullscreen">
+            <i class="fas fa-expand text-xl"></i>
+        </button>
+        
+        <div id="timer" role="timer" aria-live="polite">45:00</div>
+
+        <div class="session-controls">
+            <button id="shortSessionBtn" class="bg-black active-session" aria-label="45 minute session">
+                45 Min Session
             </button>
-            
-            <div id="timer" role="timer" aria-live="polite">45:00</div>
+            <button id="longSessionBtn" class="bg-gray-100" aria-label="2 hour session">
+                2 Hour Session
+            </button>
+        </div>
 
-            <div class="session-controls">
-                <button id="shortSessionBtn" class="bg-black active-session" aria-label="45 minute session">
-                    45 Min Session
-                </button>
-                <button id="longSessionBtn" class="bg-gray-100" aria-label="2 hour session">
-                    2 Hour Session
-                </button>
-            </div>
+        <div class="controls">
+            <button id="startBtn" class="bg-black hover:bg-gray-800" aria-label="Start timer">
+                Start
+            </button>
+            <button id="resetBtn" class="border-2 border-black hover:border-gray-800" aria-label="Reset timer">
+                Reset
+            </button>
+            <button id="breakBtn" class="bg-gray-100 hover:bg-gray-200" aria-label="Start break now">
+                Break Now
+            </button>
+        </div>
 
-            <div class="controls">
-                <button id="startBtn" class="bg-black hover:bg-gray-800" aria-label="Start timer">
-                    Start
-                </button>
-                <button id="resetBtn" class="border-2 border-black hover:border-gray-800" aria-label="Reset timer">
-                    Reset
-                </button>
-                <button id="breakBtn" class="bg-gray-100 hover:bg-gray-200" aria-label="Start break now">
-                    Break Now
-                </button>
-            </div>
-
-            <div class="section-info">
-                <p id="sessionInfo">45 minutes focused work | 10 minutes break</p>
-            </div>
+        <div class="section-info">
+            <p id="sessionInfo">45 minutes focused work | 10 minutes break</p>
         </div>
     </div>
 
@@ -291,11 +295,15 @@
         const shortSessionBtn = document.getElementById('shortSessionBtn');
         const longSessionBtn = document.getElementById('longSessionBtn');
         const sessionInfo = document.getElementById('sessionInfo');
+        const timerContainer = document.getElementById('timerContainer');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
 
         function updateDisplay() {
             const minutes = Math.floor(pomodoro.remainingTime / 60).toString().padStart(2, '0');
             const seconds = (pomodoro.remainingTime % 60).toString().padStart(2, '0');
             timerDisplay.textContent = `${minutes}:${seconds}`;
+            startBtn.textContent = pomodoro.isRunning ? 'Pause' : 
+                                pomodoro.remainingTime === pomodoro.baseTimes[pomodoro.getCurrentMode()] ? 'Start' : 'Resume';
         }
 
         function notifyUser() {
@@ -311,7 +319,7 @@
         // Event Listeners
         startBtn.addEventListener('click', () => {
             pomodoro.isRunning ? pomodoro.reset() : pomodoro.start();
-            startBtn.textContent = pomodoro.isRunning ? 'Pause' : pomodoro.remainingTime === pomodoro.baseTimes[pomodoro.getCurrentMode()] ? 'Start' : 'Resume';
+            updateDisplay();
         });
 
         resetBtn.addEventListener('click', () => pomodoro.reset());
@@ -320,16 +328,13 @@
         longSessionBtn.addEventListener('click', () => pomodoro.setSession('long'));
 
         // Fullscreen Logic
-        const timerContainer = document.getElementById('timerContainer');
-        const fullscreenBtn = document.getElementById('fullscreenBtn');
-        
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
-                timerContainer.requestFullscreen?.().then(() => {
+                timerContainer.requestFullscreen().then(() => {
                     fullscreenBtn.innerHTML = '<i class="fas fa-compress text-xl"></i>';
                 });
             } else {
-                document.exitFullscreen?.().then(() => {
+                document.exitFullscreen().then(() => {
                     fullscreenBtn.innerHTML = '<i class="fas fa-expand text-xl"></i>';
                 });
             }
@@ -358,7 +363,7 @@
         // Orientation Handling
         window.addEventListener('orientationchange', () => {
             if (window.matchMedia('(orientation: landscape)').matches) {
-                timerContainer.requestFullscreen?.();
+                timerContainer.requestFullscreen();
             }
         });
     </script>
