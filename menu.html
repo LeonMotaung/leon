@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mozambik Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat+Alternates:wght@400;700&display=swap');
+    
+    .font-anton {
+      font-family: 'Anton', sans-serif;
+    }
+    
+    .font-montserrat-alt {
+      font-family: 'Montserrat Alternates', sans-serif;
+    }
+    
+    .menu-hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://www.mozambik.co.za/v2/wp-content/uploads/revslider/home-4/chicken-banner.webp');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .dish-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .dish-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .menu-category-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    
+    .menu-category-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #e25f3f;
+    }
+    
+    .dish-popular {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #e25f3f;
+      color: white;
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      transform: rotate(5deg);
+      z-index: 10;
+    }
+    
+    .dish-price {
+      background: #f7ce59;
+      color: #4a3a2a;
+      padding: 3px 10px;
+      border-radius: 15px;
+      font-weight: bold;
+    }
+    
+    .filter-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .filter-btn.active, .filter-btn:hover {
+      background: #e25f3f;
+      color: white;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-dish {
+      animation: fadeIn 0.6s ease forwards;
+    }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+  </style>
+</head>
+<body class="bg-gray-50 font-montserrat-alt">
+  <!-- Header -->
+  <header class="fixed w-full bg-white shadow-md z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="bg-[#f7ce59] px-6 py-2">
+        <h1 class="font-anton text-3xl text-[#e25f3f] drop-shadow-[2px_2px_0_#4a3a2a]">Res Life Food</h1>
+      </div>
+      
+      <nav class="hidden md:flex space-x-8">
+        <a href="#" class="text-gray-700 hover:text-[#e25f3f]">Home</a>
+        <a href="#" class="text-[#e25f3f] font-bold border-b-2 border-[#e25f3f]">Menu</a>
+        <a href="#" class="text-gray-700 hover:text-[#e25f3f]">Locations</a>
+        <a href="#" class="text-gray-700 hover:text-[#e25f3f]">Functions</a>
+        <a href="#" class="text-gray-700 hover:text-[#e25f3f]">Vouchers</a>
+      </nav>
+      
+      <div class="flex items-center space-x-4">
+        <button class="bg-[#2a6adf] text-white px-4 py-2 rounded-md text-sm font-bold">Book a Table</button>
+        <button class="text-gray-700">
+          <i class="fas fa-shopping-basket"></i>
+        </button>
+        <button class="md:hidden text-gray-700">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="menu-hero pt-32 pb-24 text-center text-white">
+    <div class="container mx-auto px-4">
+      <h1 class="font-anton text-5xl md:text-7xl mb-4">MOZAMBIK MENU</h1>
+      <p class="text-xl max-w-2xl mx-auto">Experience the vibrant flavors of Mozambique with our signature peri-peri dishes and fresh seafood</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <button class="filter-btn active bg-[#e25f3f] text-white px-6 py-2 rounded-full">All Menu</button>
+        <button class="filter-btn bg-white text-gray-800 px-6 py-2 rounded-full">Starters</button>
+        <button class="filter-btn bg-white text-gray-800 px-6 py-2 rounded-full">Mains</button>
+        <button class="filter-btn bg-white text-gray-800 px-6 py-2 rounded-full">Seafood</button>
+        <button class="filter-btn bg-white text-gray-800 px-6 py-2 rounded-full">Desserts</button>
+        <button class="filter-btn bg-white text-gray-800 px-6 py-2 rounded-full">Drinks</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <!-- Starters -->
+      <div class="mb-20">
+        <h2 class="menu-category-title font-anton text-3xl text-gray-800">STARTERS</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Dish 1 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish">
+            <div class="dish-popular">Chef's Choice</div>
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Peri-Peri Chicken Livers</h3>
+              <span class="dish-price">R89</span>
+            </div>
+            <p class="text-gray-600 mt-2">Tender chicken livers sautéed in our signature peri-peri sauce, served with fresh bread</p>
+          </div>
+          
+          <!-- Dish 2 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish delay-100">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Calamari Strips</h3>
+              <span class="dish-price">R95</span>
+            </div>
+            <p class="text-gray-600 mt-2">Lightly battered calamari strips served with lemon aioli and peri-peri dip</p>
+          </div>
+          
+          <!-- Dish 3 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish delay-200">
+            <div class="dish-popular">New</div>
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Mozambik Platter</h3>
+              <span class="dish-price">R145</span>
+            </div>
+            <p class="text-gray-600 mt-2">Selection of chicken wings, prawns, calamari strips and chicken livers</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mains -->
+      <div class="mb-20">
+        <h2 class="menu-category-title font-anton text-3xl text-gray-800">MAIN COURSES</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Dish 1 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish">
+            <div class="dish-popular">Popular</div>
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Half Chicken</h3>
+              <span class="dish-price">R145</span>
+            </div>
+            <p class="text-gray-600 mt-2">Flame-grilled half chicken basted with your choice of peri-peri sauce</p>
+            <div class="mt-3">
+              <span class="text-xs bg-[#3a6dbf] text-white px-2 py-1 rounded">Mild, Hot, Extra Hot</span>
+            </div>
+          </div>
+          
+          <!-- Dish 2 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish delay-100">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Rump Steak</h3>
+              <span class="dish-price">R185</span>
+            </div>
+            <p class="text-gray-600 mt-2">250g rump steak served with chips, salad and your choice of sauce</p>
+          </div>
+          
+          <!-- Dish 3 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish delay-200">
+            <div class="dish-popular">Chef's Choice</div>
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Vegetable Espetada</h3>
+              <span class="dish-price">R125</span>
+            </div>
+            <p class="text-gray-600 mt-2">Grilled vegetable skewers with halloumi, served with rice and peri-peri sauce</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Seafood -->
+      <div class="mb-20">
+        <h2 class="menu-category-title font-anton text-3xl text-gray-800">SEAFOOD SPECIALTIES</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Dish 1 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish">
+            <div class="dish-popular">Signature</div>
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Seafood Platter</h3>
+              <span class="dish-price">R295</span>
+            </div>
+            <p class="text-gray-600 mt-2">Grilled prawns, calamari, line fish and mussels served with rice and chips</p>
+          </div>
+          
+          <!-- Dish 2 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish delay-100">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Grilled Prawns</h3>
+              <span class="dish-price">R195</span>
+            </div>
+            <p class="text-gray-600 mt-2">10 succulent prawns grilled to perfection, served with rice and salad</p>
+          </div>
+          
+          <!-- Dish 3 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish delay-200">
+            <div class="dish-popular">New</div>
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Coconut Curry</h3>
+              <span class="dish-price">R165</span>
+            </div>
+            <p class="text-gray-600 mt-2">Line fish in a creamy coconut curry sauce with basmati rice</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Desserts -->
+      <div class="mb-20">
+        <h2 class="menu-category-title font-anton text-3xl text-gray-800">DESSERTS</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Dish 1 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish">
+            <div class="dish-popular">Favorite</div>
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Chocolate Brownie</h3>
+              <span class="dish-price">R65</span>
+            </div>
+            <p class="text-gray-600 mt-2">Warm chocolate brownie with vanilla ice cream and chocolate sauce</p>
+          </div>
+          
+          <!-- Dish 2 -->
+          <div class="dish-card bg-gray-50 rounded-xl p-6 relative overflow-hidden animate-dish delay-100">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-xl text-gray-800">Malva Pudding</h3>
+              <span class="dish-price">R55</span>
+            </div>
+            <p class="text-gray-600 mt-2">Traditional South African pudding served with custard</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Drinks Section -->
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="menu-category-title font-anton text-3xl text-gray-800">DRINKS & COCKTAILS</h2>
+      
+      <div class="grid md:grid-cols-2 gap-12 mt-10">
+        <!-- Cocktails -->
+        <div>
+          <h3 class="font-bold text-xl text-[#e25f3f] mb-6">SIGNATURE COCKTAILS</h3>
+          <div class="space-y-6">
+            <div class="flex justify-between items-start border-b border-gray-300 pb-4">
+              <div>
+                <h4 class="font-bold text-gray-800">Mozambik Sunset</h4>
+                <p class="text-gray-600">Vodka, grenadine, orange juice and soda</p>
+              </div>
+              <span class="dish-price">R75</span>
+            </div>
+            
+            <div class="flex justify-between items-start border-b border-gray-300 pb-4">
+              <div>
+                <h4 class="font-bold text-gray-800">Peri-Peri Margarita</h4>
+                <p class="text-gray-600">Tequila, triple sec, lime juice with a peri-peri rim</p>
+              </div>
+              <span class="dish-price">R85</span>
+            </div>
+            
+            <div class="flex justify-between items-start border-b border-gray-300 pb-4">
+              <div>
+                <h4 class="font-bold text-gray-800">Tropical Espetada</h4>
+                <p class="text-gray-600">Rum, pineapple juice, coconut cream and passion fruit</p>
+              </div>
+              <span class="dish-price">R80</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Wines -->
+        <div>
+          <h3 class="font-bold text-xl text-[#e25f3f] mb-6">WINE SELECTION</h3>
+          <div class="space-y-6">
+            <div class="flex justify-between items-start border-b border-gray-300 pb-4">
+              <div>
+                <h4 class="font-bold text-gray-800">Sauvignon Blanc</h4>
+                <p class="text-gray-600">Crisp and refreshing with citrus notes</p>
+              </div>
+              <span class="dish-price">R120</span>
+            </div>
+            
+            <div class="flex justify-between items-start border-b border-gray-300 pb-4">
+              <div>
+                <h4 class="font-bold text-gray-800">Shiraz</h4>
+                <p class="text-gray-600">Full-bodied with dark fruit flavors</p>
+              </div>
+              <span class="dish-price">R135</span>
+            </div>
+            
+            <div class="flex justify-between items-start border-b border-gray-300 pb-4">
+              <div>
+                <h4 class="font-bold text-gray-800">Chenin Blanc</h4>
+                <p class="text-gray-600">Light and fruity with tropical notes</p>
+              </div>
+              <span class="dish-price">R110</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-[#e25f3f] text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-anton text-4xl mb-6">READY TO TASTE MOZAMBIK?</h2>
+      <p class="text-xl max-w-2xl mx-auto mb-8">Book your table today and experience the vibrant flavors of Mozambique</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <button class="bg-[#f7ce59] text-gray-900 font-bold px-8 py-4 rounded-lg hover:bg-[#e6bd48] transition">
+          BOOK A TABLE
+        </button>
+        <button class="bg-white text-[#e25f3f] font-bold px-8 py-4 rounded-lg hover:bg-gray-100 transition">
+          VIEW FULL MENU
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="bg-[#f7ce59] px-6 py-2 inline-block mb-6">
+            <h3 class="font-anton text-xl text-[#e25f3f] drop-shadow-[2px_2px_0_#4a3a2a]">Res Life Food</h3>
+          </div>
+          <p class="text-gray-400 mb-4">Bringing the vibrant flavors of Mozambique to your table since 1995.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-bold text-lg mb-4">OUR MENU</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Starters</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Mains</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Seafood</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Desserts</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Drinks</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-bold text-lg mb-4">LOCATIONS</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Cape Town</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Johannesburg</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Durban</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Pretoria</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Port Elizabeth</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-bold text-lg mb-4">CONTACT US</h4>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-[#f7ce59]"></i>
+              <span class="text-gray-400">123 Coastal Road, Cape Town</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone mt-1 mr-3 text-[#f7ce59]"></i>
+              <span class="text-gray-400">(021) 123-4567</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-3 text-[#f7ce59]"></i>
+              <span class="text-gray-400">info@mozambik.co.za</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+        <p>© 2023 Mozambik. All rights reserved. | Website by Res Life Food</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple animation for dish cards when they come into view
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-dish');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.dish-card').forEach(card => {
+        observer.observe(card);
+      });
+      
+      // Filter button functionality
+      document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active', 'bg-[#e25f3f]', 'text-white');
+            btn.classList.add('bg-white', 'text-gray-800');
+          });
+          
+          this.classList.add('active', 'bg-[#e25f3f]', 'text-white');
+          this.classList.remove('bg-white', 'text-gray-800');
+          
+          // In a real implementation, you would filter the menu items here
+        });
+      });
+    });
+  </script>
+</body>
+</html>
