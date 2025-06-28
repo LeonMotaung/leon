@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Nazreen Res Life Food</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat+Alternates:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes pulseGlow {
+      0% {
+        text-shadow: 0 0 10px rgba(247, 206, 89, 0.8);
+      }
+      50% {
+        text-shadow: 0 0 30px rgba(247, 206, 89, 0.9), 0 0 50px rgba(247, 206, 89, 0.6);
+      }
+      100% {
+        text-shadow: 0 0 10px rgba(247, 206, 89, 0.8);
+      }
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(240, 122, 58, 0.7);
+      }
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(240, 122, 58, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(240, 122, 58, 0);
+      }
+    }
+    
+    .animate-pulse-custom {
+      animation: pulse 2s infinite;
+    }
+    
+    .animate-slide-left {
+      animation: slideInLeft 0.8s ease-out forwards;
+    }
+    
+    .animate-slide-right {
+      animation: slideInRight 0.8s ease-out forwards;
+    }
+    
+    .animate-glow {
+      animation: pulseGlow 3s infinite;
+    }
+    
+    .font-anton {
+      font-family: "Anton", sans-serif;
+    }
+    
+    .font-montserrat-alt {
+      font-family: "Montserrat Alternates", sans-serif;
+    }
+    
+    .section-delay-100 {
+      animation-delay: 100ms;
+    }
+    
+    .section-delay-200 {
+      animation-delay: 200ms;
+    }
+    
+    .section-delay-300 {
+      animation-delay: 300ms;
+    }
+    
+    .section-delay-400 {
+      animation-delay: 400ms;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen bg-black">
+  <!-- Top left logo -->
+  <div class="absolute top-0 left-0 z-20 bg-[#f7ce59] px-6 py-3 animate-slide-left">
+    <h1 class="font-anton text-[48px] leading-[48px] text-[#e25f3f] drop-shadow-[2px_2px_0_#4a3a2a]" style="text-shadow: 2px 2px 0 #4a3a2a">
+      Res Life Food 
+    </h1>
+  </div>
+  
+  <!-- Background image -->
+  <img alt="A large seafood platter with lobster, fries, lemon wedges, and fried calamari in bowls on a wooden table" 
+       class="w-full h-[600px] object-cover object-right" 
+       height="600" 
+       src="https://www.mozambik.co.za/v2/wp-content/uploads/revslider/home-4/chicken-banner.webp" 
+       width="1920"/>
+  
+  <!-- Overlay content container -->
+  <div class="absolute top-0 left-0 z-10 flex flex-col justify-center h-[600px] max-w-[900px] px-10">
+    <h2 class="font-anton text-[72px] leading-[72px] text-[#f7ce59] animate-glow">
+      FUNCTIONS
+    </h2>
+    <h3 class="font-montserrat-alt text-[72px] leading-[72px] text-white drop-shadow-[2px_2px_0_rgba(0,0,0,0.7)] flex items-center">
+      <span class="text-[#3a6dbf] drop-shadow-[2px_2px_0_rgba(0,0,0,0.7)] text-[96px] leading-[72px] mr-2 font-bold">
+        &amp;
+      </span>
+      EVENTS
+    </h3>
+    <a href="#booking-form" class="mt-10">
+      <button class="bg-[#2a6adf] hover:bg-[#1a5acf] text-white font-montserrat-alt tracking-widest text-[16px] leading-[24px] py-3 px-8 rounded-md max-w-max transition-all duration-300 transform hover:scale-105">
+        FUNCTION BOOKINGS ENQUIRY
+      </button>
+    </a>
+  </div>
+  
+  <!-- Top right nav -->
+  <nav class="absolute top-8 right-10 z-20 flex space-x-10 font-montserrat-alt text-white text-[14px] tracking-widest animate-slide-right">
+    <a class="text-[#f7ce59] hover:underline" href="#">
+      HOME
+    </a>
+    <a class="hover:underline" href="#">
+      MENUS
+    </a>
+    <a class="hover:underline" href="#">
+      STORE LOCATOR
+    </a>
+    <a class="hover:underline" href="#">
+      VOUCHERS
+    </a>
+  </nav>
+  
+  <!-- Bottom right floating cart icon -->
+  <button aria-label="Shopping cart" class="fixed bottom-6 right-6 z-30 bg-[#f07a3a] w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg hover:bg-[#d96a2e] transition animate-pulse-custom">
+    <i class="fas fa-shopping-basket fa-lg"></i>
+  </button>
+
+  <!-- CRM Section -->
+  <section id="booking-form" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="font-anton text-4xl text-center text-[#e25f3f] mb-2 animate-slide-left">
+        FUNCTION BOOKING ENQUIRY
+      </h2>
+      <p class="font-montserrat-alt text-center text-gray-700 mb-12 max-w-2xl mx-auto animate-slide-right">
+        Let us help you plan your next event. Fill out the form below and our events team will contact you to discuss your requirements.
+      </p>
+      
+      <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto animate-slide-left section-delay-100">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="font-montserrat-alt font-bold text-gray-700 block mb-2">Your Name</label>
+            <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#f07a3a]">
+          </div>
+          <div>
+            <label class="font-montserrat-alt font-bold text-gray-700 block mb-2">Email Address</label>
+            <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#f07a3a]">
+          </div>
+          <div>
+            <label class="font-montserrat-alt font-bold text-gray-700 block mb-2">Phone Number</label>
+            <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#f07a3a]">
+          </div>
+          <div>
+            <label class="font-montserrat-alt font-bold text-gray-700 block mb-2">Event Type</label>
+            <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#f07a3a]">
+              <option>Corporate Event</option>
+              <option>Birthday Party</option>
+              <option>Wedding Reception</option>
+              <option>Family Gathering</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label class="font-montserrat-alt font-bold text-gray-700 block mb-2">Event Date & Time</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input type="date" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#f07a3a]">
+              <input type="time" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#f07a3a]">
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <label class="font-montserrat-alt font-bold text-gray-700 block mb-2">Number of Guests</label>
+            <input type="number" min="10" max="500" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#f07a3a]">
+          </div>
+          <div class="md:col-span-2">
+            <label class="font-montserrat-alt font-bold text-gray-700 block mb-2">Additional Information</label>
+            <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#f07a3a]"></textarea>
+          </div>
+          <div class="md:col-span-2 mt-4">
+            <button class="bg-[#e25f3f] hover:bg-[#d15535] text-white font-montserrat-alt tracking-widest text-[16px] py-4 px-10 rounded-lg w-full transition-all duration-300 transform hover:scale-[1.02]">
+              SUBMIT ENQUIRY
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-[#f7f7f7]">
+    <div class="container mx-auto px-4">
+      <h2 class="font-anton text-4xl text-center text-[#e25f3f] mb-16">
+        WHY CHOOSE Nazreen Res Life Food
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300 animate-slide-left section-delay-200">
+          <div class="w-20 h-20 bg-[#f7ce59] rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-utensils text-3xl text-[#e25f3f]"></i>
+          </div>
+          <h3 class="font-anton text-xl text-[#3a6dbf] mb-3">Exquisite Cuisine</h3>
+          <p class="font-montserrat-alt text-gray-700">
+            Our chefs create unforgettable culinary experiences with fresh, locally-sourced ingredients.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300 animate-slide-left section-delay-300">
+          <div class="w-20 h-20 bg-[#f7ce59] rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-cocktail text-3xl text-[#e25f3f]"></i>
+          </div>
+          <h3 class="font-anton text-xl text-[#3a6dbf] mb-3">Signature Bar</h3>
+          <p class="font-montserrat-alt text-gray-700">
+            Expert mixologists crafting unique cocktails and serving premium beverages.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300 animate-slide-left section-delay-400">
+          <div class="w-20 h-20 bg-[#f7ce59] rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-users text-3xl text-[#e25f3f]"></i>
+          </div>
+          <h3 class="font-anton text-xl text-[#3a6dbf] mb-3">Professional Staff</h3>
+          <p class="font-montserrat-alt text-gray-700">
+            Dedicated event coordinators and attentive service staff to ensure perfection.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#2a2a2a] text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="animate-slide-right">
+          <h3 class="font-anton text-xl text-[#f7ce59] mb-4">Nazreen Res Life Food</h3>
+          <p class="font-montserrat-alt text-gray-300 mb-4">
+            Bringing the vibrant flavors of Nazreen Res Life Food to your special events with unforgettable culinary experiences.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-[#f7ce59] hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-[#f7ce59] hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-[#f7ce59] hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="animate-slide-right section-delay-100">
+          <h3 class="font-anton text-xl text-[#f7ce59] mb-4">QUICK LINKS</h3>
+          <ul class="font-montserrat-alt space-y-2">
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Home</a></li>
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Our Menus</a></li>
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Gallery</a></li>
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Locations</a></li>
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div class="animate-slide-right section-delay-200">
+          <h3 class="font-anton text-xl text-[#f7ce59] mb-4">EVENT TYPES</h3>
+          <ul class="font-montserrat-alt space-y-2">
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Corporate Events</a></li>
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Birthday Parties</a></li>
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Wedding Receptions</a></li>
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Family Gatherings</a></li>
+            <li><a href="#" class="hover:text-[#f7ce59] transition-colors">Product Launches</a></li>
+          </ul>
+        </div>
+        
+        <div class="animate-slide-right section-delay-300">
+          <h3 class="font-anton text-xl text-[#f7ce59] mb-4">CONTACT US</h3>
+          <ul class="font-montserrat-alt space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt text-[#f07a3a] mt-1 mr-3"></i>
+              <span>123 Ocean Drive, Coastal City</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone text-[#f07a3a] mt-1 mr-3"></i>
+              <span>(123) 456-7890</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope text-[#f07a3a] mt-1 mr-3"></i>
+              <span>book@nazreenreslife.com</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-clock text-[#f07a3a] mt-1 mr-3"></i>
+              <span>Mon-Sat: 11am-11pm<br>Sun: 11am-9pm</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <p class="font-montserrat-alt text-gray-400">
+          © 2023 Nazreen Res Life Food All rights reserved. | Designed with <i class="fas fa-heart text-[#f07a3a]"></i> for unforgettable events
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
