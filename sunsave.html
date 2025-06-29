@@ -1,0 +1,621 @@
+<html class="scroll-smooth" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   SunSave SA – Smart Solar Savings for South Africa
+  </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Plug animation container */
+    .plug-container {
+      position: relative;
+      width: 280px;
+      height: 140px;
+      margin: 0 auto;
+    }
+    /* Plugs */
+    .plug {
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      height: 100px;
+      transform: translateY(-50%);
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+    }
+    .plug.green {
+      left: 0;
+      animation: plugMoveRight 4s ease-in-out infinite;
+      filter: drop-shadow(0 3px 5px rgba(34,197,94,0.5));
+    }
+    .plug.blue {
+      right: 0;
+      animation: plugMoveLeft 4s ease-in-out infinite;
+      filter: drop-shadow(0 3px 5px rgba(59,130,246,0.5));
+    }
+    /* Glow effect on plug tips */
+    .plug-tip {
+      transition: filter 0.3s ease;
+      filter: drop-shadow(0 0 0 transparent);
+    }
+    .plug.green.glow .plug-tip {
+      filter: drop-shadow(0 0 8px #22c55e);
+      transition: filter 0.3s ease;
+    }
+    .plug.blue.glow .plug-tip {
+      filter: drop-shadow(0 0 8px #3b82f6);
+      transition: filter 0.3s ease;
+    }
+    /* Spark animation */
+    .spark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      filter: drop-shadow(0 0 10px #facc15);
+      animation: sparkFlash 4s ease-in-out infinite;
+      z-index: 10;
+    }
+    /* Power flow line */
+    .power-line {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      width: 80%;
+      height: 6px;
+      background: linear-gradient(90deg, #22c55e, #3b82f6);
+      border-radius: 9999px;
+      transform: translateY(-50%);
+      opacity: 0;
+      animation: powerPulse 4s ease-in-out infinite;
+      z-index: 5;
+      box-shadow: 0 0 8px #22c55e, 0 0 12px #3b82f6;
+    }
+
+    /* Animations */
+    @keyframes plugMoveRight {
+      0%, 100% {
+        left: 0;
+      }
+      45%, 55% {
+        left: 90px;
+      }
+    }
+    @keyframes plugMoveLeft {
+      0%, 100% {
+        right: 0;
+      }
+      45%, 55% {
+        right: 90px;
+      }
+    }
+    @keyframes sparkFlash {
+      0%, 40%, 60%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 20px #facc15) drop-shadow(0 0 30px #fbbf24);
+      }
+    }
+    @keyframes powerPulse {
+      0%, 40%, 60%, 100% {
+        opacity: 0;
+        box-shadow: 0 0 8px #22c55e, 0 0 12px #3b82f6;
+      }
+      50% {
+        opacity: 1;
+        box-shadow:
+          0 0 20px #22c55e,
+          0 0 30px #3b82f6,
+          0 0 40px #fbbf24,
+          0 0 50px #facc15;
+      }
+    }
+    /* Glow plugs at spark time */
+    @keyframes plugGlowToggle {
+      0%, 40%, 60%, 100% {
+        filter: drop-shadow(0 0 0 transparent);
+      }
+      50% {
+        filter: drop-shadow(0 0 8px);
+      }
+    }
+    /* Fade in animation */
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    /* Scrollbar for chat history */
+    .chat-history::-webkit-scrollbar {
+      width: 8px;
+    }
+    .chat-history::-webkit-scrollbar-thumb {
+      background-color: #22c55e;
+      border-radius: 4px;
+    }
+    .chat-history::-webkit-scrollbar-track {
+      background-color: #d1fae5;
+    }
+  </style>
+ </head>
+ <body class="bg-gradient-to-b from-white to-green-50 min-h-screen flex flex-col">
+  <nav class="bg-white shadow-md sticky top-0 z-30">
+   <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+    <div class="flex justify-between items-center h-16">
+     <a aria-label="SunSave SA Home" class="flex items-center space-x-2" href="#">
+      <img alt="SunSave SA logo, stylized sun with solar panel rays in green and yellow colors" class="w-10 h-10" height="80" loading="lazy" src="save.png" width="80"/>
+      <span class="font-extrabold text-xl text-green-700 select-none">
+       SunSave SA
+      </span>
+     </a>
+     <div class="hidden md:flex space-x-8 font-semibold text-gray-700">
+      <a class="hover:text-green-600 transition" href="#">
+       Home
+      </a>
+      <a class="hover:text-green-600 transition" href="#">
+       About Us
+      </a>
+      <a class="hover:text-green-600 transition" href="#">
+       Contact Us
+      </a>
+      <a class="hover:text-green-600 transition flex items-center" href="#" id="open-ai-assistant">
+       <i class="fas fa-robot mr-1"></i> AI Assistant
+      </a>
+     </div>
+     <button aria-label="Toggle menu" class="md:hidden text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500" id="menu-btn" type="button">
+      <i class="fas fa-bars fa-lg"></i>
+     </button>
+    </div>
+   </div>
+   <div class="md:hidden" id="mobile-menu" style="display:none;">
+    <div class="px-6 pt-2 pb-4 space-y-1 font-semibold text-gray-700 bg-white border-t border-gray-200">
+     <a class="block py-2 hover:text-green-600 transition" href="#">
+      Home
+     </a>
+     <a class="block py-2 hover:text-green-600 transition" href="#">
+      About Us
+     </a>
+     <a class="block py-2 hover:text-green-600 transition" href="#">
+      Contact Us
+     </a>
+     <a class="block py-2 hover:text-green-600 transition flex items-center" href="#" id="open-ai-assistant-mobile">
+      <i class="fas fa-robot mr-2"></i> AI Assistant
+     </a>
+    </div>
+   </div>
+  </nav>
+  <main class="flex-grow flex flex-col justify-center items-center px-6 text-center py-12 relative">
+   <div id="main-content" class="w-full max-w-xl">
+    <header class="mb-12 w-full">
+     <img alt="SunSave SA logo, stylized sun with solar panel rays in green and yellow colors" class="mx-auto mb-6 w-28 h-28 animate-bounce" height="120" loading="lazy" src="save.png" width="120"/>
+     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+      Welcome to SunSave SA – Smart Solar Savings for South Africa
+     </h1>
+    </header>
+    <div class="relative w-full max-w-md mx-auto">
+     <div class="plug-container">
+      <!-- Green Plug Left -->
+      <svg aria-hidden="true" class="plug green" height="100" role="img" viewbox="0 0 64 64" width="100" xmlns="http://www.w3.org/2000/svg">
+       <rect fill="#22c55e" height="24" rx="4" ry="4" width="20" x="10" y="20"></rect>
+       <rect fill="#16a34a" height="10" rx="2" ry="2" width="6" x="25" y="10"></rect>
+       <rect fill="#16a34a" height="6" rx="3" ry="3" width="20" x="10" y="44"></rect>
+       <circle cx="30" cy="32" fill="#a7f3d0" r="6"></circle>
+       <circle cx="30" cy="32" fill="#22c55e" r="3"></circle>
+       <rect class="plug-tip" fill="#16a34a" height="12" width="4" x="28" y="26"></rect>
+      </svg>
+      <!-- Blue Plug Right -->
+      <svg aria-hidden="true" class="plug blue" height="100" role="img" viewbox="0 0 64 64" width="100" xmlns="http://www.w3.org/2000/svg">
+       <rect fill="#3b82f6" height="24" rx="4" ry="4" width="20" x="34" y="20"></rect>
+       <rect fill="#2563eb" height="10" rx="2" ry="2" width="6" x="33" y="10"></rect>
+       <rect fill="#2563eb" height="6" rx="3" ry="3" width="20" x="34" y="44"></rect>
+       <circle cx="34" cy="32" fill="#bfdbfe" r="6"></circle>
+       <circle cx="34" cy="32" fill="#3b82f6" r="3"></circle>
+       <rect class="plug-tip" fill="#2563eb" height="12" width="4" x="32" y="26"></rect>
+      </svg>
+      <!-- Spark -->
+      <svg aria-hidden="true" class="spark" height="40" role="img" viewbox="0 0 64 64" width="40" xmlns="http://www.w3.org/2000/svg">
+       <path d="M32 2 L28 22 H38 L24 62 L36 34 H26 L32 2 Z" fill="#facc15" filter="url(#glow)"></path>
+       <defs>
+        <filter color-interpolation-filters="sRGB" height="200%" id="glow" width="200%" x="-50%" y="-50%">
+         <fedropshadow dx="0" dy="0" flood-color="#facc15" flood-opacity="1" stddeviation="3"></fedropshadow>
+         <fedropshadow dx="0" dy="0" flood-color="#fbbf24" flood-opacity="0.7" stddeviation="5"></fedropshadow>
+        </filter>
+       </defs>
+      </svg>
+      <!-- Power Flow Line -->
+      <div class="power-line rounded-full"></div>
+     </div>
+    </div>
+    <div class="mt-12">
+     <button id="start-btn" aria-label="Start Saving with SunSave SA" class="inline-block bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 text-white font-semibold text-lg px-8 py-4 rounded-lg shadow-lg transition">
+      Start Saving
+     </button>
+    </div>
+   </div>
+   <!-- Overlay for appliance selection -->
+   <div id="appliance-overlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6 hidden z-50">
+    <div class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-lg fade-in">
+     <h2 class="text-2xl font-extrabold text-gray-900 mb-6">Select Your Daily Use Appliances (Choose 8)</h2>
+     <form id="appliance-form" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Refrigerator" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Refrigerator</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Washing Machine" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Washing Machine</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Microwave Oven" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Microwave Oven</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Air Conditioner" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Air Conditioner</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Electric Kettle" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Electric Kettle</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Television" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Television</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Laptop" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Laptop</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Water Heater" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Water Heater</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Ceiling Fan" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Ceiling Fan</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Dishwasher" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Dishwasher</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Toaster" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Toaster</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Vacuum Cleaner" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Vacuum Cleaner</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Coffee Maker" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Coffee Maker</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Hair Dryer" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Hair Dryer</span>
+      </label>
+      <label class="flex items-center space-x-3 cursor-pointer select-none rounded-md border border-gray-300 p-3 hover:border-green-500 transition">
+       <input type="checkbox" name="appliances" value="Electric Grill" class="form-checkbox h-5 w-5 text-green-600" />
+       <span class="text-gray-800 font-semibold">Electric Grill</span>
+      </label>
+     </form>
+     <div class="mt-6 flex justify-center">
+      <button id="submit-appliances" disabled class="bg-green-500 hover:bg-green-600 disabled:bg-green-300 focus:ring-4 focus:ring-green-300 text-white font-semibold text-lg px-8 py-3 rounded-lg shadow-lg transition">
+       Submit
+      </button>
+     </div>
+    </div>
+   </div>
+   <!-- Loading overlay -->
+   <div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6 hidden z-40">
+    <button disabled class="bg-green-600 text-white font-semibold text-lg px-8 py-4 rounded-lg shadow-lg flex items-center space-x-3 animate-pulse">
+     <svg class="w-6 h-6 animate-spin" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" stroke-opacity="0.25" stroke-linecap="round" stroke-linejoin="round"></circle>
+      <path d="M4 12a8 8 0 018-8" stroke-linecap="round" stroke-linejoin="round"></path>
+     </svg>
+     <span>Loading...</span>
+    </button>
+   </div>
+   <!-- AI Assistant Modal -->
+   <div id="ai-assistant-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden z-60">
+    <div class="bg-white rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] flex flex-col md:flex-row overflow-hidden">
+     <!-- Sidebar: History -->
+     <aside class="w-full md:w-80 bg-green-50 border-r border-green-200 flex flex-col">
+      <header class="p-4 border-b border-green-200 flex items-center justify-between">
+       <h3 class="text-lg font-extrabold text-green-700 select-none">Chat History</h3>
+       <button id="clear-history" aria-label="Clear chat history" class="text-green-600 hover:text-green-800 focus:outline-none">
+        <i class="fas fa-trash-alt"></i>
+       </button>
+      </header>
+      <div id="chat-history" class="flex-grow overflow-y-auto p-4 space-y-3 chat-history">
+       <!-- Chat messages history will appear here -->
+      </div>
+     </aside>
+     <!-- Main Chat Area -->
+     <section class="flex-grow flex flex-col">
+      <header class="bg-green-500 text-white p-4 flex items-center justify-between">
+       <h2 class="text-xl font-extrabold select-none">AI Assistant</h2>
+       <button id="close-ai-assistant" aria-label="Close AI Assistant" class="text-white hover:text-green-300 focus:outline-none">
+        <i class="fas fa-times fa-lg"></i>
+       </button>
+      </header>
+      <div id="chat-messages" class="flex-grow p-6 overflow-y-auto space-y-4 bg-white">
+       <div class="text-gray-500 italic select-none">Start a conversation with the AI assistant.</div>
+      </div>
+      <form id="chat-form" class="p-4 border-t border-green-200 flex space-x-3 bg-green-50">
+       <input id="chat-input" type="text" placeholder="Type your message..." aria-label="Type your message" class="flex-grow rounded-md border border-green-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent" autocomplete="off" required/>
+       <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-md shadow transition focus:ring-4 focus:ring-green-300">
+        Send
+       </button>
+      </form>
+     </section>
+    </div>
+   </div>
+  </main>
+  <script>
+   // Animate glow on plugs synchronized with spark and power line
+    const greenPlug = document.querySelector('.plug.green');
+    const bluePlug = document.querySelector('.plug.blue');
+    const spark = document.querySelector('.spark');
+    const powerLine = document.querySelector('.power-line');
+
+    function toggleGlow(state) {
+      if (state) {
+        greenPlug.classList.add('glow');
+        bluePlug.classList.add('glow');
+        spark.style.opacity = '1';
+        powerLine.style.opacity = '1';
+      } else {
+        greenPlug.classList.remove('glow');
+        bluePlug.classList.remove('glow');
+        spark.style.opacity = '0';
+        powerLine.style.opacity = '0';
+      }
+    }
+
+    // Loop animation timing: plugs move 4s cycle, spark and glow at 50% (2s)
+    setInterval(() => {
+      toggleGlow(true);
+      setTimeout(() => {
+        toggleGlow(false);
+      }, 800);
+    }, 4000);
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+        mobileMenu.style.display = 'block';
+      } else {
+        mobileMenu.style.display = 'none';
+      }
+    });
+
+    // Elements for appliance selection
+    const startBtn = document.getElementById('start-btn');
+    const mainContent = document.getElementById('main-content');
+    const applianceOverlay = document.getElementById('appliance-overlay');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const applianceForm = document.getElementById('appliance-form');
+    const submitBtn = document.getElementById('submit-appliances');
+
+    // Show loading overlay and then appliance selection
+    startBtn.addEventListener('click', () => {
+      // Fade out main content
+      mainContent.style.transition = 'opacity 0.5s ease';
+      mainContent.style.opacity = '0';
+
+      // Show loading overlay
+      loadingOverlay.classList.remove('hidden');
+
+      // After 1.5s simulate loading then show appliance selection
+      setTimeout(() => {
+        loadingOverlay.classList.add('hidden');
+        applianceOverlay.classList.remove('hidden');
+        applianceOverlay.classList.add('fade-in');
+      }, 1500);
+    });
+
+    // Limit selection to 8 checkboxes max
+    applianceForm.addEventListener('change', (event) => {
+      const checkedBoxes = applianceForm.querySelectorAll('input[type="checkbox"]:checked');
+      if (checkedBoxes.length > 8) {
+        // Uncheck the last changed checkbox
+        const changed = event.target;
+        if (changed.checked) {
+          changed.checked = false;
+        }
+      }
+      // Enable submit only if exactly 8 selected
+      submitBtn.disabled = checkedBoxes.length !== 8;
+    });
+
+    // AI Assistant modal elements
+    const aiModal = document.getElementById('ai-assistant-modal');
+    const openAiBtn = document.getElementById('open-ai-assistant');
+    const openAiBtnMobile = document.getElementById('open-ai-assistant-mobile');
+    const closeAiBtn = document.getElementById('close-ai-assistant');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatHistory = document.getElementById('chat-history');
+    const clearHistoryBtn = document.getElementById('clear-history');
+
+    // Open AI Assistant modal
+    function openAiAssistant() {
+      aiModal.classList.remove('hidden');
+      chatInput.focus();
+    }
+    openAiBtn.addEventListener('click', openAiAssistant);
+    openAiBtnMobile.addEventListener('click', (e) => {
+      e.preventDefault();
+      openAiAssistant();
+      // Also close mobile menu if open
+      if (mobileMenu.style.display === 'block') {
+        mobileMenu.style.display = 'none';
+      }
+    });
+
+    // Close AI Assistant modal
+    closeAiBtn.addEventListener('click', () => {
+      aiModal.classList.add('hidden');
+    });
+
+    // Add message to chat area and history
+    function addMessage(text, sender = 'user') {
+      const messageWrapper = document.createElement('div');
+      messageWrapper.className = sender === 'user' ? 'text-right' : 'text-left';
+      const messageBubble = document.createElement('div');
+      messageBubble.className = sender === 'user'
+        ? 'inline-block bg-green-500 text-white px-4 py-2 rounded-lg max-w-xs break-words'
+        : 'inline-block bg-gray-200 text-gray-900 px-4 py-2 rounded-lg max-w-xs break-words';
+      messageBubble.textContent = text;
+      messageWrapper.appendChild(messageBubble);
+      chatMessages.appendChild(messageWrapper);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Add to history
+      const historyItem = document.createElement('button');
+      historyItem.type = 'button';
+      historyItem.className = 'w-full text-left px-3 py-2 rounded hover:bg-green-100 focus:outline-none focus:bg-green-200 transition text-sm truncate';
+      historyItem.textContent = (sender === 'user' ? 'You: ' : 'AI: ') + text;
+      historyItem.title = text;
+      historyItem.addEventListener('click', () => {
+        // On click, show this message in chat area (clear and show only this)
+        chatMessages.innerHTML = '';
+        addMessage(text, sender);
+      });
+      chatHistory.appendChild(historyItem);
+    }
+
+    // Simulate AI response (simple echo with delay)
+    function getAiResponse(userText) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          // Simple canned response for demo
+          const lower = userText.toLowerCase();
+          let response = "I'm here to help you with your solar savings!";
+          if (lower.includes('hello') || lower.includes('hi')) {
+            response = "Hello! How can I assist you with your solar energy needs today?";
+          } else if (lower.includes('appliance')) {
+            response = "You can select appliances like refrigerator, washing machine, and more to optimize your solar usage.";
+          } else if (lower.includes('thanks') || lower.includes('thank you')) {
+            response = "You're welcome! Feel free to ask anything else.";
+          }
+          resolve(response);
+        }, 1000);
+      });
+    }
+
+    // Handle chat form submit
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const userText = chatInput.value.trim();
+      if (!userText) return;
+      addMessage(userText, 'user');
+      chatInput.value = '';
+      chatInput.disabled = true;
+
+      // Show typing indicator
+      const typingIndicator = document.createElement('div');
+      typingIndicator.className = 'inline-block bg-gray-200 text-gray-900 px-4 py-2 rounded-lg max-w-xs italic select-none';
+      typingIndicator.textContent = 'AI is typing...';
+      const typingWrapper = document.createElement('div');
+      typingWrapper.className = 'text-left';
+      typingWrapper.appendChild(typingIndicator);
+      chatMessages.appendChild(typingWrapper);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      const aiResponse = await getAiResponse(userText);
+
+      // Remove typing indicator
+      chatMessages.removeChild(typingWrapper);
+
+      addMessage(aiResponse, 'ai');
+      chatInput.disabled = false;
+      chatInput.focus();
+    });
+
+    // Clear chat history
+    clearHistoryBtn.addEventListener('click', () => {
+      chatHistory.innerHTML = '';
+      chatMessages.innerHTML = '<div class="text-gray-500 italic select-none">Start a conversation with the AI assistant.</div>';
+    });
+
+    // On appliance submit: close appliance overlay, fade main content out, then open AI assistant modal
+    submitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const selected = Array.from(applianceForm.querySelectorAll('input[type="checkbox"]:checked'))
+    .map(cb => cb.value);
+  
+  // Store in cookie
+  const d = new Date();
+  d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
+  document.cookie = `selectedAppliances=${encodeURIComponent(selected.join(','))}; expires=${d.toUTCString()}; path=/`;
+  
+  applianceOverlay.classList.add('hidden');
+  openAiAssistant();
+    });
+
+    function getCookie(name) {
+      const cname = name + "=";
+      const decodedCookie = decodeURIComponent(document.cookie);
+      const ca = decodedCookie.split(';');
+      for(let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
+        if (c.indexOf(cname) === 0) {
+          return c.substring(cname.length, c.length);
+        }
+      }
+      return "";
+    }
+async function getAiResponse(userText) {
+  try {
+    // Get selected appliances from cookie
+    const appliances = getCookie('selectedAppliances') || '';
+    
+    const response = await fetch('openai.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: userText,
+        appliances: appliances
+      })
+    });
+
+    if (!response.ok) throw new Error('API error');
+    
+    const data = await response.json();
+    return data.reply;
+  } catch (error) {
+    return "I'm having trouble connecting. Please try again later.";
+  }
+}
+
+// Helper function to get cookies
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+    // Usage:
+    const saved = getCookie('selectedAppliances');
+    const selected = saved ? JSON.parse(saved) : [];
+  </script>
+ </body>
+</html>
