@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>About Us - SunSave SA | Smart Solar Savings for South Africa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f0fdf4);
+    }
+    .mission-card {
+      background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+      border: 2px solid #bbf7d0;
+    }
+    .team-card {
+      transition: all 0.3s ease;
+      border-bottom: 4px solid #22c55e;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .stats-card {
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border-radius: 16px;
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 40px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      background-color: #22c55e;
+      border-radius: 50%;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 24px;
+      width: 2px;
+      height: calc(100% + 24px);
+      background-color: #22c55e;
+    }
+    .timeline-item:last-child::after {
+      display: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="flex justify-between items-center h-16">
+        <a aria-label="SunSave SA Home" class="flex items-center space-x-2" href="index.html">
+          <img alt="SunSave SA logo, stylized sun with solar panel rays in green and yellow colors" class="w-10 h-10" height="80" loading="lazy" src="save.png" width="80"/>
+          <span class="font-extrabold text-xl text-green-700 select-none">SunSave SA</span>
+        </a>
+        <div class="hidden md:flex space-x-8 font-semibold text-gray-700">
+          <a class="hover:text-green-600 transition" href="index.html">Home</a>
+          <a class="text-green-600 transition" href="about.html">About Us</a>
+          <a class="hover:text-green-600 transition" href="#contact">Contact Us</a>
+          <a class="hover:text-green-600 transition flex items-center" href="index.html#open-ai-assistant">
+            <i class="fas fa-robot mr-1"></i> AI Assistant
+          </a>
+        </div>
+        <button aria-label="Toggle menu" class="md:hidden text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500" id="menu-btn" type="button">
+          <i class="fas fa-bars fa-lg"></i>
+        </button>
+      </div>
+    </div>
+    <div class="md:hidden" id="mobile-menu" style="display:none;">
+      <div class="px-6 pt-2 pb-4 space-y-1 font-semibold text-gray-700 bg-white border-t border-gray-200">
+        <a class="block py-2 hover:text-green-600 transition" href="index.html">Home</a>
+        <a class="block py-2 text-green-600 transition" href="about.html">About Us</a>
+        <a class="block py-2 hover:text-green-600 transition" href="#contact">Contact Us</a>
+        <a class="block py-2 hover:text-green-600 transition flex items-center" href="index.html#open-ai-assistant">
+          <i class="fas fa-robot mr-2"></i> AI Assistant
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-16 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Empowering South Africa with Solar Energy Solutions
+          </h1>
+          <p class="text-xl mb-8 text-green-100">
+            We're on a mission to help South African households combat load shedding and reduce electricity costs through smart solar technology.
+          </p>
+          <a href="index.html#start-btn" class="inline-block bg-white text-green-700 hover:bg-green-50 font-bold px-8 py-3 rounded-lg shadow-lg transition duration-300">
+            Start Saving Today
+          </a>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Solar panels in South Africa" class="rounded-xl shadow-2xl w-full max-w-md">
+            <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
+              <div class="text-green-700 font-bold text-lg">Since 2020</div>
+              <div class="text-gray-600">Serving South Africa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Mission -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Mission & Vision</h2>
+        <div class="w-24 h-1 bg-green-500 mx-auto"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="mission-card p-8 rounded-xl">
+          <div class="text-green-600 mb-4">
+            <i class="fas fa-bullseye text-4xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+          <p class="text-gray-700 mb-4">
+            To empower every South African household with affordable and efficient solar solutions that provide energy independence and significant cost savings.
+          </p>
+          <p class="text-gray-700">
+            We're committed to making solar technology accessible and understandable, helping our customers navigate the complex world of renewable energy with confidence.
+          </p>
+        </div>
+        
+        <div class="mission-card p-8 rounded-xl">
+          <div class="text-green-600 mb-4">
+            <i class="fas fa-eye text-4xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+          <p class="text-gray-700 mb-4">
+            To create a South Africa where every home is powered by clean, renewable energy, free from the constraints of load shedding and rising electricity costs.
+          </p>
+          <p class="text-gray-700">
+            We envision communities that are energy-resilient, environmentally conscious, and economically empowered through solar technology.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="py-16 bg-green-50">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Journey</h2>
+        <div class="w-24 h-1 bg-green-500 mx-auto"></div>
+      </div>
+      
+      <div class="relative">
+        <!-- Timeline -->
+        <div class="max-w-3xl mx-auto">
+          <div class="timeline-item">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <div class="text-green-600 font-bold mb-2">January 2020</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">The Beginning</h3>
+              <p class="text-gray-700">
+                Founded in Cape Town by renewable energy engineers who experienced firsthand the challenges of South Africa's energy crisis.
+              </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <div class="text-green-600 font-bold mb-2">July 2021</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">First Major Installation</h3>
+              <p class="text-gray-700">
+                Completed our first large-scale residential solar installation, helping a family of six become completely energy independent.
+              </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <div class="text-green-600 font-bold mb-2">March 2022</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">AI Assistant Launch</h3>
+              <p class="text-gray-700">
+                Introduced our AI-powered energy assistant to help South Africans optimize their solar usage and reduce electricity costs.
+              </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <div class="text-green-600 font-bold mb-2">Present</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">Nationwide Impact</h3>
+              <p class="text-gray-700">
+                Serving thousands of households across all nine provinces, with plans to expand our community solar initiatives.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Team -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
+        <p class="text-gray-700 max-w-2xl mx-auto">
+          Passionate experts dedicated to bringing solar solutions to South African homes
+        </p>
+        <div class="w-24 h-1 bg-green-500 mx-auto mt-4"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Team Member 1 -->
+        <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="David Khumalo" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900">David Khumalo</h3>
+            <p class="text-green-600 font-semibold mb-3">CEO & Founder</p>
+            <p class="text-gray-700">
+              Renewable energy expert with 15+ years in solar technology. Former head engineer at Eskom's renewable division.
+            </p>
+            <div class="mt-4 flex space-x-4">
+              <a href="#" class="text-green-600 hover:text-green-800">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="#" class="text-green-600 hover:text-green-800">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Team Member 2 -->
+        <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sarah Petersen" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900">Sarah Petersen</h3>
+            <p class="text-green-600 font-semibold mb-3">Chief Technology Officer</p>
+            <p class="text-gray-700">
+              AI and energy systems specialist. Developed our smart energy optimization algorithms.
+            </p>
+            <div class="mt-4 flex space-x-4">
+              <a href="#" class="text-green-600 hover:text-green-800">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="#" class="text-green-600 hover:text-green-800">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Team Member 3 -->
+        <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Thabo Nkosi" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900">Thabo Nkosi</h3>
+            <p class="text-green-600 font-semibold mb-3">Head of Installations</p>
+            <p class="text-gray-700">
+              Certified solar installation expert with a decade of experience in residential and commercial solar projects.
+            </p>
+            <div class="mt-4 flex space-x-4">
+              <a href="#" class="text-green-600 hover:text-green-800">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="#" class="text-green-600 hover:text-green-800">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="stats-card p-6 text-center">
+          <div class="text-4xl font-bold text-green-700 mb-2">2500+</div>
+          <div class="text-gray-800 font-semibold">Homes Powered</div>
+        </div>
+        
+        <div class="stats-card p-6 text-center">
+          <div class="text-4xl font-bold text-green-700 mb-2">85%</div>
+          <div class="text-gray-800 font-semibold">Average Savings</div>
+        </div>
+        
+        <div class="stats-card p-6 text-center">
+          <div class="text-4xl font-bold text-green-700 mb-2">9</div>
+          <div class="text-gray-800 font-semibold">Provinces Covered</div>
+        </div>
+        
+        <div class="stats-card p-6 text-center">
+          <div class="text-4xl font-bold text-green-700 mb-2">24/7</div>
+          <div class="text-gray-800 font-semibold">Support Available</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
+        <div class="w-24 h-1 bg-green-500 mx-auto"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="text-center">
+          <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-hand-holding-heart text-green-600 text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Customer Focus</h3>
+          <p class="text-gray-700">
+            We put our customers at the center of everything we do, providing tailored solutions and exceptional support.
+          </p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-leaf text-green-600 text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Sustainability</h3>
+          <p class="text-gray-700">
+            Committed to environmental responsibility through renewable energy solutions that reduce carbon footprints.
+          </p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-lightbulb text-green-600 text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Innovation</h3>
+          <p class="text-gray-700">
+            Continuously developing smarter technologies to maximize energy efficiency and savings for our customers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-green-50">
+    <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Ready to Take Control of Your Energy Future?</h2>
+      <p class="text-gray-700 text-xl mb-8 max-w-2xl mx-auto">
+        Join thousands of South Africans who are saving money and enjoying uninterrupted power with SunSave SA.
+      </p>
+      <a href="index.html#start-btn" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg transition duration-300 text-lg">
+        Get Started with Our AI Assistant
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
+        <p class="text-gray-700 max-w-2xl mx-auto">
+          Have questions about solar solutions? Our team is here to help!
+        </p>
+        <div class="w-24 h-1 bg-green-500 mx-auto mt-4"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <div class="bg-green-50 rounded-xl p-8 h-full">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">Get In Touch</h3>
+            
+            <div class="flex items-start mb-6">
+              <div class="text-green-600 mr-4 mt-1">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900">Our Office</h4>
+                <p class="text-gray-700">12 Solar Avenue, Century City, Cape Town, 7441</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start mb-6">
+              <div class="text-green-600 mr-4 mt-1">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900">Call Us</h4>
+                <p class="text-gray-700">+27 21 123 4567</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start mb-6">
+              <div class="text-green-600 mr-4 mt-1">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900">Email Us</h4>
+                <p class="text-gray-700">info@sunsavesa.co.za</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="text-green-600 mr-4 mt-1">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900">Business Hours</h4>
+                <p class="text-gray-700">Monday - Friday: 8:00 AM - 5:00 PM</p>
+                <p class="text-gray-700">Saturday: 9:00 AM - 1:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="bg-white border border-green-200 rounded-xl p-8 h-full">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+            <form>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="name">Name</label>
+                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              </div>
+              
+              <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="email">Email</label>
+                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              </div>
+              
+              <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="phone">Phone</label>
+                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              </div>
+              
+              <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="message">Message</label>
+                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+              </div>
+              
+              <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg shadow transition duration-300">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <img alt="SunSave SA logo" class="w-10 h-10" height="80" loading="lazy" src="save.png" width="80"/>
+            <span class="font-extrabold text-xl text-white select-none">SunSave SA</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Empowering South African homes with smart solar solutions for energy independence and cost savings.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Solar Solutions</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Savings Calculator</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-4">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Residential Solar</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Commercial Solar</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Solar Monitoring</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Energy Audits</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Maintenance</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+          <p class="text-gray-400 mb-4">
+            Subscribe to get the latest solar tips and exclusive offers.
+          </p>
+          <form>
+            <div class="flex">
+              <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
+              <button type="submit" class="bg-green-500 hover:bg-green-600 px-4 rounded-r-lg">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+        <p>&copy; 2023 SunSave SA. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+        mobileMenu.style.display = 'block';
+      } else {
+        mobileMenu.style.display = 'none';
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
