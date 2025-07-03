@@ -1,525 +1,454 @@
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>About Us - SunSave SA | Smart Solar Savings for South Africa</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #f0fdf4);
-    }
-    .mission-card {
-      background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
-      border: 2px solid #bbf7d0;
-    }
-    .team-card {
-      transition: all 0.3s ease;
-      border-bottom: 4px solid #22c55e;
-    }
-    .team-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    .stats-card {
-      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-      border-radius: 16px;
-    }
-    .timeline-item {
-      position: relative;
-      padding-left: 30px;
-      margin-bottom: 40px;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 16px;
-      height: 16px;
-      background-color: #22c55e;
-      border-radius: 50%;
-    }
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      left: 7px;
-      top: 24px;
-      width: 2px;
-      height: calc(100% + 24px);
-      background-color: #22c55e;
-    }
-    .timeline-item:last-child::after {
-      display: none;
-    }
-  </style>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="techida | IT Solutions &amp; Business Services HTML landing page template ">
+  <!-- fav icon -->
+  <link rel="icon" href="images/favicon.ico">
+
+  <!-- bootstarp css file -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- aos.css file -->
+  <link rel="stylesheet" href="css/aos.css">
+
+  <!-- fancybox css file -->
+  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+  <!-- owl carousel css file -->
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <!--  toasts file     -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+  <!-- bootstrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <!-- main css file -->
+  <link rel="stylesheet" href="css/style.css">
+  <title> techida | IT Solutions &amp; Business Services HTML template </title>
 </head>
-<body class="min-h-screen">
-  <!-- Navigation -->
-  <nav class="bg-white shadow-md sticky top-0 z-30">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="flex justify-between items-center h-16">
-        <a aria-label="SunSave SA Home" class="flex items-center space-x-2" href="index.html">
-          <img alt="SunSave SA logo, stylized sun with solar panel rays in green and yellow colors" class="w-10 h-10" height="80" loading="lazy" src="save.png" width="80"/>
-          <span class="font-extrabold text-xl text-green-700 select-none">SunSave SA</span>
-        </a>
-        <div class="hidden md:flex space-x-8 font-semibold text-gray-700">
-          <a class="hover:text-green-600 transition" href="sunsave.html">Home</a>
-          <a class="text-green-600 transition" href="about.html">About Us</a>
-          <a class="hover:text-green-600 transition" href="contact.html">Contact Us</a>
-          <a class="hover:text-green-600 transition flex items-center" href="index.html#open-ai-assistant">
-            <i class="fas fa-robot mr-1"></i> AI Assistant
-          </a>
-        </div>
-        <button aria-label="Toggle menu" class="md:hidden text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500" id="menu-btn" type="button">
-          <i class="fas fa-bars fa-lg"></i>
+
+<body data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0">
+
+  <!-- start preLoader -->
+  <div id="preloader" style="display: none;">
+    <svg id="mainSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" style="visibility: visible;">
+      <defs>
+        <radialGradient id="mainGrad" cx="565.092828" cy="300" fx="565.092828" fy="300" r="100" gradientUnits="userSpaceOnUse">
+          <stop offset=".68" stop-color="#21df51"></stop>
+          <stop offset=".72" stop-color="#3add63"></stop>
+          <stop offset=".77" stop-color="#4fdd73"></stop>
+          <stop offset=".82" stop-color="#66db83"></stop>
+          <stop offset=".88" stop-color="#7cd893"></stop>
+          <stop offset=".93" stop-color="#95d8a6"></stop>
+          <stop offset=".99" stop-color="#bde6c7"></stop>
+          <stop offset="1" stop-color="#e3f1e7"></stop>
+        </radialGradient>
+      </defs>
+      <circle id="fillDot" cx="400" cy="300" fill="#21df51" r="100" data-svg-origin="300 200" transform="matrix(1,0,0,1,87.4021,0)" style="translate: none; rotate: none; scale: none;"></circle>
+      <circle id="gradDot" cx="400" cy="300" fill="url(#mainGrad)" r="100" data-svg-origin="300 200" transform="matrix(1,0,0,1,-87.4021,0)" style="translate: none; rotate: none; scale: none;"></circle>
+    </svg>
+  </div>
+  <!-- end preLoader -->
+
+  <!-- start scroll to top button -->
+  <div id="progress" style="display: grid; background: conic-gradient(rgb(31, 168, 79) 16%, rgb(215, 215, 215) 16%);">
+    <span id="progress-value"><i class="bi bi-arrow-up-short"></i></span>
+  </div>
+  <!-- end scroll to top button -->
+
+
+  <!-- ======= start Header ======= -->
+  <header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top sticky">
+      <div class="container">
+        <a class="navbar-brand " href="index.html"><img src="images/logo.png" class="logo" alt="LOGO"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list" id="menu"></i>
         </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+              
+               <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+        
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="portfolio.html">portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">contact us</a>
+            </li>
+          </ul>
+          <div class="d-flex ms-auto">
+            <a class="btn" href="index.html">join now</a>
+            <button id="mode-toggle" class="btn-light-mode switch-button"><i id="mode-icon" class="bi bi-moon-fill"></i></button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="md:hidden" id="mobile-menu" style="display:none;">
-      <div class="px-6 pt-2 pb-4 space-y-1 font-semibold text-gray-700 bg-white border-t border-gray-200">
-        <a class="block py-2 hover:text-green-600 transition" href="sunsave.html">Home</a>
-        <a class="block py-2 text-green-600 transition" href="about.html">About Us</a>
-        <a class="block py-2 hover:text-green-600 transition" href="contact.html">Contact Us</a>
-        <a class="block py-2 hover:text-green-600 transition flex items-center" href="index.html#open-ai-assistant">
-          <i class="fas fa-robot mr-2"></i> AI Assistant
-        </a>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
+  <!-- ======= end Header ======= -->
 
-  <!-- Hero Section -->
-  <section class="py-16 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="flex flex-col md:flex-row items-center justify-between">
-        <div class="md:w-1/2 mb-10 md:mb-0">
-          <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Empowering South Africa with Solar Energy Solutions
-          </h1>
-          <p class="text-xl mb-8 text-green-100">
-            We're on a mission to help South African households combat load shedding and reduce electricity costs through smart solar technology.
-          </p>
-          <a href="sunsave.html" class="inline-block bg-white text-green-700 hover:bg-green-50 font-bold px-8 py-3 rounded-lg shadow-lg transition duration-300">
-            Start Saving Today
-          </a>
-        </div>
-        <div class="md:w-1/2 flex justify-center">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Solar panels in South Africa" class="rounded-xl shadow-2xl w-full max-w-md">
-            <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
-              <div class="text-green-700 font-bold text-lg">Since 2025</div>
-              <div class="text-gray-600">Serving South Africa</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our Mission -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Mission & Vision</h2>
-        <div class="w-24 h-1 bg-green-500 mx-auto"></div>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div class="mission-card p-8 rounded-xl">
-          <div class="text-green-600 mb-4">
-            <i class="fas fa-bullseye text-4xl"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-          <p class="text-gray-700 mb-4">
-            To empower every South African household with affordable and efficient solar solutions that provide energy independence and significant cost savings.
-          </p>
-          <p class="text-gray-700">
-            We're committed to making solar technology accessible and understandable, helping our customers navigate the complex world of renewable energy with confidence.
-          </p>
-        </div>
-        
-        <div class="mission-card p-8 rounded-xl">
-          <div class="text-green-600 mb-4">
-            <i class="fas fa-eye text-4xl"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-          <p class="text-gray-700 mb-4">
-            To create a South Africa where every home is powered by clean, renewable energy, free from the constraints of load shedding and rising electricity costs.
-          </p>
-          <p class="text-gray-700">
-            We envision communities that are energy-resilient, environmentally conscious, and economically empowered through solar technology.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our Story -->
-  <section class="py-16 bg-green-50">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Journey</h2>
-        <div class="w-24 h-1 bg-green-500 mx-auto"></div>
-      </div>
-      
-      <div class="relative">
-        <!-- Timeline -->
-        <div class="max-w-3xl mx-auto">
-          <div class="timeline-item">
-            <div class="bg-white p-6 rounded-xl shadow-md">
-              <div class="text-green-600 font-bold mb-2">January 2025</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-3">The Beginning</h3>
-              <p class="text-gray-700">
-                Founded in Cape Town by renewable energy engineers who experienced firsthand the challenges of South Africa's energy crisis.
-              </p>
-            </div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="bg-white p-6 rounded-xl shadow-md">
-              <div class="text-green-600 font-bold mb-2">Feb 2025</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-3">First Major Installation</h3>
-              <p class="text-gray-700">
-                Completed our first large-scale residential solar installation, helping a family of six become completely energy independent.
-              </p>
-            </div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="bg-white p-6 rounded-xl shadow-md">
-              <div class="text-green-600 font-bold mb-2">March 2025</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-3">AI Assistant Launch</h3>
-              <p class="text-gray-700">
-                Introduced our AI-powered energy assistant to help South Africans optimize their solar usage and reduce electricity costs.
-              </p>
-            </div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="bg-white p-6 rounded-xl shadow-md">
-              <div class="text-green-600 font-bold mb-2">Present</div>
-              <h3 class="text-xl font-bold text-gray-900 mb-3">Nationwide Impact</h3>
-              <p class="text-gray-700">
-                Serving thousands of households across all nine provinces, with plans to expand our community solar initiatives.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our Team -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
-        <p class="text-gray-700 max-w-2xl mx-auto">
-          Passionate experts dedicated to bringing solar solutions to South African homes
-        </p>
-        <div class="w-24 h-1 bg-green-500 mx-auto mt-4"></div>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Team Member 1 -->
-        <div class="team-card bg-white rounded-xl shadow-md overflow-hidden">
-          <img src="Pro.jpg" alt="Leon Motaung" class="w-full h-64 object-cover">
-          <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-900">Leon Motaung</h3>
-            <p class="text-green-600 font-semibold mb-3">CEO & Founder</p>
-            <p class="text-gray-700">
-              Renewable energy researcher with about 4 year experience in Software  Engineering and Web developent and  
-            </p>
-            <div class="mt-4 flex space-x-4">
-              <a href="#" class="text-green-600 hover:text-green-800">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="#" class="text-green-600 hover:text-green-800">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        
-       
-        
-       
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats Section -->
-  <section class="py-16 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="stats-card p-6 text-center">
-          <div class="text-4xl font-bold text-green-700 mb-2">2500+</div>
-          <div class="text-gray-800 font-semibold">Homes Powered</div>
-        </div>
-        
-        <div class="stats-card p-6 text-center">
-          <div class="text-4xl font-bold text-green-700 mb-2">85%</div>
-          <div class="text-gray-800 font-semibold">Average Savings</div>
-        </div>
-        
-        <div class="stats-card p-6 text-center">
-          <div class="text-4xl font-bold text-green-700 mb-2">9</div>
-          <div class="text-gray-800 font-semibold">Provinces Covered</div>
-        </div>
-        
-        <div class="stats-card p-6 text-center">
-          <div class="text-4xl font-bold text-green-700 mb-2">24/7</div>
-          <div class="text-gray-800 font-semibold">Support Available</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Values Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
-        <div class="w-24 h-1 bg-green-500 mx-auto"></div>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div class="text-center">
-          <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-hand-holding-heart text-green-600 text-3xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Customer Focus</h3>
-          <p class="text-gray-700">
-            We put our customers at the center of everything we do, providing tailored solutions and exceptional support.
-          </p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-leaf text-green-600 text-3xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Sustainability</h3>
-          <p class="text-gray-700">
-            Committed to environmental responsibility through renewable energy solutions that reduce carbon footprints.
-          </p>
-        </div>
-        
-        <div class="text-center">
-          <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-lightbulb text-green-600 text-3xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Innovation</h3>
-          <p class="text-gray-700">
-            Continuously developing smarter technologies to maximize energy efficiency and savings for our customers.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-16 bg-green-50">
-    <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Ready to Take Control of Your Energy Future?</h2>
-      <p class="text-gray-700 text-xl mb-8 max-w-2xl mx-auto">
-        Join thousands of South Africans who are saving money and enjoying uninterrupted power with SunSave SA.
+  <!-- ======= srart Breadcrumbs ======= -->
+  <section class="breadcrumbs py-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>about</li>
+      </ol>
+      <h2 class="title">about us</h2>
+      <p class="col-lg-10 col-12">
+        Although, final stages of the internal network gives a complete experience of
+        The Parameter of Speculative Environment
       </p>
-      <a href="sunsave.html" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg transition duration-300 text-lg">
-        Get Started with Our AI Assistant
-      </a>
     </div>
-  </section>
+  </section><!-- End Breadcrumbs -->
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
-        <p class="text-gray-700 max-w-2xl mx-auto">
-          Have questions about solar solutions? Our team is here to help!
-        </p>
-        <div class="w-24 h-1 bg-green-500 mx-auto mt-4"></div>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div>
-          <div class="bg-green-50 rounded-xl p-8 h-full">
-            <h3 class="text-xl font-bold text-gray-900 mb-6">Get In Touch</h3>
-            
-            <div class="flex items-start mb-6">
-              <div class="text-green-600 mr-4 mt-1">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-gray-900">Our Office</h4>
-                <p class="text-gray-700">12 Solar Avenue, Century City, Cape Town, 7441</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start mb-6">
-              <div class="text-green-600 mr-4 mt-1">
-                <i class="fas fa-phone-alt"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-gray-900">Call Us</h4>
-                <p class="text-gray-700">+27 21 123 4567</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start mb-6">
-              <div class="text-green-600 mr-4 mt-1">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-gray-900">Email Us</h4>
-                <p class="text-gray-700">info@sunsavesa.co.za</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start">
-              <div class="text-green-600 mr-4 mt-1">
-                <i class="fas fa-clock"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-gray-900">Business Hours</h4>
-                <p class="text-gray-700">Monday - Friday: 8:00 AM - 5:00 PM</p>
-                <p class="text-gray-700">Saturday: 9:00 AM - 1:00 PM</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div>
-          <div class="bg-white border border-green-200 rounded-xl p-8 h-full">
-            <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
-            <form>
-              <div class="mb-4">
-                <label class="block text-gray-700 font-medium mb-2" for="name">Name</label>
-                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
-              </div>
-              
-              <div class="mb-4">
-                <label class="block text-gray-700 font-medium mb-2" for="email">Email</label>
-                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
-              </div>
-              
-              <div class="mb-4">
-                <label class="block text-gray-700 font-medium mb-2" for="phone">Phone</label>
-                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
-              </div>
-              
-              <div class="mb-4">
-                <label class="block text-gray-700 font-medium mb-2" for="message">Message</label>
-                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
-              </div>
-              
-              <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg shadow transition duration-300">
-                Send Message
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <div class="flex items-center space-x-2 mb-4">
-            <img alt="SunSave SA logo" class="w-10 h-10" height="80" loading="lazy" src="save.png" width="80"/>
-            <span class="font-extrabold text-xl text-white select-none">SunSave SA</span>
-          </div>
-          <p class="text-gray-400 mb-4">
-            Empowering South African homes with smart solar solutions for energy independence and cost savings.
+
+  <!-- ============== Start About section ========== -->
+  <section class="about py-5 mt-5" id="about">
+    <div class="container">
+      <div class="row mt-5 justify-content-center align-items-center">
+        <div class="col-12 col-lg-6">
+          <h4 class="pretitle aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+            about us
+          </h4>
+          <h1 class="title col-12 aos-init aos-animate" data-aos="fade-up" data-aos-delay="250">
+            The best IT solution since <span class="unique-text">2015</span>
+          </h1>
+          <p class="col-lg-10 col-12 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+            Although, final stages of the internal network gives a complete experience of
+            The Parameter of Speculative Environment , Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Eligendi voluptas quibusdam libero quos rem unde, sequi distinctio eum excepturi nobis facere expedita
+            sint nulla aliquam, odio ea laboriosam hic? Consectetur ullam eveniet
           </p>
-          <div class="flex space-x-4">
-            <a href="#" class="text-gray-400 hover:text-white">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="text-gray-400 hover:text-white">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="text-gray-400 hover:text-white">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="text-gray-400 hover:text-white">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
+          <a href="#" class="btn aos-init aos-animate" data-aos="fade-up" data-aos-delay="350">join now</a>
+        </div>
+        <!-- image -->
+        <div class="col-12 col-lg-6 d-flex align-items-center aos-init aos-animate" data-aos="fade-left" data-aos-delay="100">
+          <img src="images/about/1.png" alt="about-img">
+        </div>
+      </div>
+      <div class="row mt-5 py-4 justify-content-center align-items-center">
+        <!-- image -->
+        <div class="col-12 col-lg-6 d-flex align-items-center aos-init" data-aos="fade-right" data-aos-delay="100">
+          <img src="images/about/2.png" alt="about-img">
+        </div>
+        <div class="col-12 col-lg-6">
+          <h1 class="title col-12 aos-init" data-aos="fade-up" data-aos-delay="200">
+            We Deal With The Aspects Of Professional <span class="unique-text">IT Services</span>
+          </h1>
+          <p class="col-lg-10 col-12 aos-init" data-aos="fade-up" data-aos-delay="250">
+            Although, final stages of the internal network gives a complete experience of
+            The Parameter of Speculative Environment
+          </p>
+          <div class="row gx-2 gy-2 col-12">
+            <div class="col-lg-6 col-md-6 col-12 aos-init" data-aos="fade-up" data-aos-delay="300">
+              <div class="box box-hover">
+                <i class="bi bi-map-fill"></i>
+                <h5 class="mx-4 title-2 fw-bold">Worldwide Services</h5>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12 aos-init" data-aos="fade-up" data-aos-delay="350">
+              <div class="box box-hover">
+                <i class="bi bi-headset"></i>
+                <h5 class="mx-4 title-2 fw-bold">Support 24h/24</h5>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12 aos-init" data-aos="fade-up" data-aos-delay="400">
+              <div class="box box-hover">
+                <i class="bi bi-controller"></i>
+                <h5 class="mx-4 title-2  fw-bold">Easy To Reach</h5>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12 aos-init" data-aos="fade-up" data-aos-delay="450">
+              <div class="box box-hover">
+                <i class="bi bi-star-fill"></i>
+                <h5 class="mx-4 title-2 fw-bold">First On Field</h5>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <div>
-          <h4 class="text-lg font-bold mb-4">Quick Links</h4>
-          <ul class="space-y-2">
-            <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
-            <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition">Solar Solutions</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition">Savings Calculator</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+      </div>
+      <div class="row mt-5 py-4 justify-content-center align-items-center">
+        <div class="col-12 col-lg-6">
+          <h1 class="title col-12 aos-init" data-aos="fade-up" data-aos-delay="200">
+            We Are Here To IT Solution With 20 Years Of <span class="unique-text">Experience</span>
+          </h1>
+          <p class="col-lg-10 col-12 aos-init" data-aos="fade-up" data-aos-delay="250">
+            Although, final stages of the internal network gives a complete experience of
+            The Parameter of Speculative Environment
+          </p>
+          <ul class="col-12 bars">
+            <li class="py-3 aos-init" data-aos="fade-up" data-aos-delay="300">
+              <div class="justify-content-between d-flex">
+                <h5>App Development</h5>
+                <h6>70%</h6>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill progress-bar-fill-1 "></div>
+              </div>
+            </li>
+            <li class="py-3 aos-init" data-aos="fade-up" data-aos-delay="350">
+              <div class="justify-content-between d-flex">
+                <h5>UI/UX Design</h5>
+                <h6>20%</h6>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill progress-bar-fill-2 "></div>
+              </div>
+            </li>
+            <li class="py-3 aos-init" data-aos="fade-up" data-aos-delay="400">
+              <div class="justify-content-between d-flex">
+                <h5>Web Development</h5>
+                <h6>55%</h6>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill progress-bar-fill-3 "></div>
+              </div>
+            </li>
           </ul>
         </div>
-        
-        <div>
-          <h4 class="text-lg font-bold mb-4">Services</h4>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white transition">Residential Solar</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition">Commercial Solar</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition">Solar Monitoring</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition">Energy Audits</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition">Maintenance</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 class="text-lg font-bold mb-4">Newsletter</h4>
-          <p class="text-gray-400 mb-4">
-            Subscribe to get the latest solar tips and exclusive offers.
-          </p>
-          <form>
-            <div class="flex">
-              <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
-              <button type="submit" class="bg-green-500 hover:bg-green-600 px-4 rounded-r-lg">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </div>
-          </form>
+        <!-- image -->
+        <div class="col-12 col-lg-6 d-flex align-items-center aos-init" data-aos="fade-left" data-aos-delay="100">
+          <img src="images/about/3.png" alt="about-img">
         </div>
       </div>
-      
-      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-        <p>&copy; 2023 SunSave SA. All rights reserved.</p>
+
+    </div>
+  </section>
+  <!-- ============== End About section ========== -->
+
+  <!-- ============== Start FAQ section ========== -->
+  <section class="container faq py-5">
+    <div class="heading">
+      <h4 class="pretitle aos-init" data-aos="fade-up">
+        FAQ
+      </h4>
+      <h1 class="title col-12 aos-init" data-aos="fade-up" data-aos-delay="100">
+        Frequently Asked Questions
+      </h1>
+      <p class="col-lg-7 col-12 aos-init" data-aos="fade-up" data-aos-delay="150">
+        As a matter of fact the unification of the coherent software provides a strict control over
+        The Accomplishment of Intended Estimation
+      </p>
+    </div>
+    <div class="row justify-content-center align-items-center  gx-4 ">
+      <div class="col-12 col-lg-6 aos-init" data-aos="fade-right" data-aos-delay="200">
+        <img src="images/faq/customer.png" alt="faq">
+      </div>
+      <div class="col-12 col-lg-6  ">
+        <div class="col-12 my-4 aos-init" data-aos="fade-up" data-aos-delay="250">
+          <div class="box">
+            <div class="d-flex w-100 justify-content-between">
+              <a data-bs-toggle="collapse" class="w-100" onclick="rotateIcon('icon1')" href="#answer1" role="button" aria-expanded="false">
+                <h4 class="d-flex justify-content-between w-100 heading-3 m-0 p-0">
+                  Do you offer both on-site and remote IT support?
+                  <i class="bi bi-chevron-compact-down mx-4 rotate-icon" id="icon1"></i>
+                </h4>
+              </a>
+            </div>
+            <p id="answer1" class="collapse">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum ullam earum itaque, quas labore illo
+              eligendi iure asperiores, modi veniam molestiae vero quasi. Ex, alias modi voluptates aspernatur
+              consequuntur facere?
+            </p>
+          </div>
+        </div>
+        <div class="col-12 my-4 aos-init" data-aos="fade-up" data-aos-delay="300">
+          <div class="box">
+            <div class="d-flex w-100 justify-content-between">
+              <a data-bs-toggle="collapse" class="w-100" onclick="rotateIcon('icon2')" href="#answer2" role="button" aria-expanded="false">
+                <h4 class="d-flex justify-content-between w-100 heading-3 m-0 p-0">
+                  what is techida ?
+                  <i class="bi bi-chevron-compact-down mx-4 rotate-icon" id="icon2"></i>
+                </h4>
+              </a>
+            </div>
+            <p id="answer2" class="collapse">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum ullam earum itaque, quas labore illo
+              eligendi iure asperiores, modi veniam molestiae vero quasi. Ex, alias modi voluptates aspernatur
+              consequuntur facere?
+            </p>
+          </div>
+        </div>
+        <div class="col-12 my-4 aos-init" data-aos="fade-up" data-aos-delay="350">
+          <div class="box">
+            <div class="d-flex w-100 justify-content-between">
+              <a data-bs-toggle="collapse" class="w-100" onclick="rotateIcon('icon3')" href="#answer3" role="button" aria-expanded="false">
+                <h4 class="d-flex justify-content-between w-100 heading-3 m-0 p-0">
+                  Is There Any Updates In The Future ?
+                  <i class="bi bi-chevron-compact-down mx-4 rotate-icon" id="icon3"></i>
+                </h4>
+              </a>
+            </div>
+            <p id="answer3" class="collapse">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum ullam earum itaque, quas labore illo
+              eligendi iure asperiores, modi veniam molestiae vero quasi. Ex, alias modi voluptates aspernatur
+              consequuntur facere?
+            </p>
+          </div>
+        </div>
+        <div class="col-12 my-4 aos-init" data-aos="fade-up" data-aos-delay="400">
+          <div class="box">
+            <div class="d-flex w-100 justify-content-between">
+              <a data-bs-toggle="collapse" class="w-100" onclick="rotateIcon('icon4')" href="#answer4" role="button" aria-expanded="false">
+                <h4 class="d-flex justify-content-between w-100 heading-3 m-0 p-0">
+                  How Much For The Service?
+                  <i class="bi bi-chevron-compact-down mx-4 rotate-icon" id="icon4"></i>
+                </h4>
+              </a>
+            </div>
+            <p id="answer4" class="collapse">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum ullam earum itaque, quas labore illo
+              eligendi iure asperiores, modi veniam molestiae vero quasi. Ex, alias modi voluptates aspernatur
+              consequuntur facere?
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </footer>
+  </section>
+  <!-- ============== End FAQ section ========== -->
 
-  <script>
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
 
-    menuBtn.addEventListener('click', () => {
-      if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-        mobileMenu.style.display = 'block';
-      } else {
-        mobileMenu.style.display = 'none';
-      }
-    });
+  <!-- ============== Start Footer section ========== -->
+  <div class="footer">
+    <div class="container">
+      <div class="row justify-content-center align-items-center g-4">
+        <div class="col-12 col-lg-3 col-md-6 mx-auto my-4">
+          <div class="box d-flex flex-column justify-content-md-start justify-content-lg-start justify-content-center align-items-center align-items-lg-start align-items-md-start">
+            <a href="#" class="logo "><img class="my-2" src="images/logo.png" alt=""></a>
+            <p>Lorem ipsum dolor sit amet
+              aspernatur exercitationem fugiat.</p>
+            <h4 class="my-2">
+              follow us
+            </h4>
+            <div class="social d-flex gap-2">
+              <div class="icon"><i class="bi bi-facebook"></i></div>
+              <div class="icon"><i class="bi bi-instagram"></i></div>
+              <div class="icon"><i class="bi bi-twitter-x "></i></div>
+              <div class="icon"><i class="bi bi-youtube"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column justify-content-md-start justify-content-lg-start justify-content-center align-items-center align-items-lg-start align-items-md-start my-4 gap-3">
+          <h4>site map</h4>
+          <ul class="d-flex flex-column gap-3">
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="index.html">home</a>
+            </li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="about.html">about</a></li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="services.html">services</a></li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="contact.html">contact</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column justify-content-md-start justify-content-lg-start justify-content-center align-items-center align-items-lg-start align-items-md-start my-4 gap-3">
+          <h4>follow us</h4>
+          <ul class="d-flex flex-column gap-3">
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="https://www.facebook.com/share/15nuD3EKDE/?mibextid=wwXIfr">facebook</a>
+            </li>
+            
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="https://www.linkedin.com/in/leonmotaung?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">linkedin</a></li>
+           </ul>
+        </div>
+        <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column justify-content-md-start justify-content-lg-start justify-content-center align-items-center align-items-lg-start align-items-md-start my-4 gap-3">
+          <h4>our services</h4>
+          <ul class="d-flex flex-column gap-3">
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="#">digital
+                marketing</a>
+            </li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="#">web
+                developement</a>
+            </li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="#">cyber
+                security</a></li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-chevron-right"></i><a href="#">graphic
+                design</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="copyrights ">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6 d-flex justify-content-lg-start justify-content-md-start justify-content-center">
+            <p class="creadits">
+              © 2024
+              Created by: <a href="#">erramix</a>
+            </p>
+          </div>
+          <div class="col-12 col-md-6 d-flex justify-content-lg-end justify-content-md-end justify-content-center pb-md-0 pb-md-0 pb-lg-0 pb-3">
+            <div>
+              <a href="terms-of-use.html">Terms of Use </a>
+              | <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============== end Footer section ========== -->
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+
+  <!--  JQuery file     -->
+  <script src="js/jquery-3.6.1.min.js"></script>
+
+  <!-- bootstrap min js -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <!--  toasts file     -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  <!--  owl carousel    -->
+  <script src="js/owl.carousel.min.js"></script>
+
+  <!-- aos file    -->
+  <script src="js/aos.js"></script>
+
+  <!-- particles js file  -->
+  <script src="js/particles.min.js"></script>
+
+  <!-- gsap file    -->
+  <script src="js/gsap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
+  <!--  counter     -->
+  <script src="js/jquery.counterup.min.js"></script>
+  <script src="js/jquery.waypoints.js"></script>
+
+  <!-- jquery isotope file -->
+  <script src="js/isotope.min.js"></script>
+
+  <!-- jquery fancybox file -->
+  <script src="js/jquery.fancybox.min.js"></script>
+
+  <!--  main js file  -->
+  <script src="js/main.js"></script>
+
+
+
+
+
+
+</body></html>
