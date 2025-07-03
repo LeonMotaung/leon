@@ -777,6 +777,40 @@
     </div>
   </div>
   <!-- ============== end Footer section ========== -->
+  <div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background: #21df51; color: #fff; border-radius: 1rem;">
+      <div class="modal-header" style="border-bottom: none;">
+        <h5 class="modal-title" id="donationModalLabel">Support DeWet Technologies</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div style="font-size:2rem; margin-bottom:1rem;">
+          <i class="bi bi-heart-fill"></i>
+        </div>
+        <p style="font-size:1.2rem; margin-bottom:1rem;">
+          Donate to help us grow and serve you better!
+        </p>
+        <div class="mb-3">
+          <strong>Phone:</strong> <a href="tel:+27848662418" style="color:#fff; text-decoration:underline;">+27 84 866 2418</a>
+        </div>
+        <a href="https://pay.yoco.com/dewet-technologies" target="_blank" class="btn btn-light" style="color:#21df51; font-weight:bold;">
+          Donate Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Show modal on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    var donationModal = new bootstrap.Modal(document.getElementById('donationModal'));
+    setTimeout(function() {
+      donationModal.show();
+    }, 1000);
+  });
+</script>
 
   <!--  JQuery file     -->
   <script src="js/jquery-3.6.1.min.js"></script>
