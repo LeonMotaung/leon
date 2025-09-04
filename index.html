@@ -843,6 +843,20 @@
 
   <!--  main js file  -->
   <script src="js/main.js"></script>
+  <script>
+    // Ping every 5 minutes (300,000 ms)
+setInterval(() => {
+  fetch("https://viralsurge.blog")
+    .then(response => console.log("Pinged successfully"))
+    .catch(err => console.error("Ping failed:", err));
+}, 300000); // 5 minutes
+
+// Optional: ping immediately on page load
+fetch("https://viralsurge.blog")
+  .then(response => console.log("Initial ping successful"))
+  .catch(err => console.error("Initial ping failed:", err));
+
+  </script>
 
 
 
